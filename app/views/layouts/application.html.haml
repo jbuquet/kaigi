@@ -14,6 +14,7 @@
   :javascript
     RETRO = JSON.parse('#{current_retro.to_json}');
     USER = JSON.parse('#{current_user.try(:to_json) || {}}');
+    CURRENT_STATUS = JSON.parse('#{current_retro.current_status.try(:to_json) || {}}');
 
   %body{ data: { retro: current_retro.to_json, user: current_user.try(:to_json) } }
     %nav.navbar.navbar-custom.navbar-fixed-top.navbar-retro{:role => "navigation"}

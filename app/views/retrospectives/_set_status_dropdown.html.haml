@@ -4,13 +4,13 @@
       %span Current timebox
       %input#start_end_current_time{ type: :submit, value: 'Start', class: 'end-btn radius2px' }
 
-  %li#write_stickies_time_section
+  %li#set_timebox_section
     .row
       .col-md-3.col-md-offset-2
-        %input{ name: 'status[minutes]',  value: '00', type: 'number', class: 'time-input text-center ' }
+        %input{ name: 'status[minutes]', min: '00', max: '59',  value: '00', type: 'number', class: 'time-input text-center ' }
       .time-dots
         = ':'
       .col-md-3
-        %input{ name: 'status[seconds]', value: '00', type: 'number', class: 'time-input text-center' }
+        %input{ name: 'status[seconds]', min: '00', max: '59', value: '00', type: 'number', class: 'time-input text-center' }
       .col-md-2
         %input#set_time_next_phase{ type: :submit, value: 'Set', class: 'set-btn radius2px' }

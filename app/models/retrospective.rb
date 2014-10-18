@@ -8,4 +8,7 @@ class Retrospective < ActiveRecord::Base
     stickies.ungrouped
   end
 
+  def current_status
+    Status.where(retrospective_id: self.id, duration: nil).first
+  end
 end
