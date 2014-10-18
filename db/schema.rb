@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018075740) do
+ActiveRecord::Schema.define(version: 20141018104614) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
-    t.integer  "votes",            default: 0
+    t.integer  "votes",             default: 0
     t.integer  "retrospective_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "initial_sticky_id"
   end
 
   create_table "retrospectives", force: true do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141018075740) do
     t.integer  "retrospective_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   create_table "users", force: true do |t|

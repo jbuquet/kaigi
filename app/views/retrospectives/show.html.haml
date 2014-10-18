@@ -10,10 +10,19 @@
       %input#set_time_next_phase{ type: :submit, value: 'Set' }
     %br
 
-
   .container-stickies
     %ul#stickies
-      - current_retro.stickies.each do |sticky|
+      - current_retro.groups.each do |group|
+        - initial_sticky = group.initial_sticky
+        %li.sticky.idea.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }
+          %ul.sticky-container
+            - group.stickies.each do |sticky|
+              - if sticky != initial_sticky
+                %li.idea.grouped{ 'data-sticky' => sticky.to_json }
+                  %p= sticky.body
+          %p= initial_sticky.body
+
+      - current_retro.ungrouped_stickies.each do |sticky|
         %li.sticky.idea.single{ 'data-sticky' => sticky.to_json }
           %ul.sticky-container
           %p= sticky.body

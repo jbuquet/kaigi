@@ -9,7 +9,7 @@ function subscribeForRetroStickies() {
       if ($this.data('sticky').id == sticky.id) {
         $this.remove();
       }
-    })
+    });
   });
 }
 

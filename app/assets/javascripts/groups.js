@@ -1,13 +1,39 @@
 function subscribeForRetroGroups() {
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/created', function(group) {
-    var span = $('<span>').addClass('group label label-warning')
-                          .html(group.id + ' ' + group.name)
-                          .data({ group: group });
+    // For now we are assuming that a group is created with 2 stickies.
+    var $droppable;
+    var $dropped;
+    $('#stickies .sticky').each(function() {
+      var $this = $(this);
 
-    var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-group');
-    span.append(icon);
+      if ($this.data('sticky').id == group.initial_sticky_id) {
+        $droppable = $this;
+      } else if ($.inArray($this.data('sticky').id, group.sticky_ids)) {
+        $dropped = $this;
+      }
+    });
+    $droppable.data('group', group);
+    drawGroupSticky($droppable, $dropped)
+  });
 
-    $('#groups').append(span);
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/sticky_added', function(data) {
+    console.log(data);
+    var group = data.group;
+    var sticky = data.sticky;
+
+    var $droppable;
+    var $dropped;
+    $('#stickies .sticky').each(function() {
+      var $this = $(this);
+
+      if ($this.data('sticky').id == group.initial_sticky_id) {
+        $droppable = $this;
+      } else if ($this.data('sticky').id == sticky.id) {
+        $dropped = $this;
+      }
+    });
+
+    drawGroupSticky($droppable, $dropped)
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/deleted', function(group) {
@@ -16,12 +42,29 @@ function subscribeForRetroGroups() {
       if ($this.data('group').id == group.id) {
         $this.remove();
       }
-    })
+    });
   });
 }
 
-$(function() {
+function groupSticky($droppable, $dropped) {
+  var droppedIntoGroup = $droppable.data('group');
+  var droppedIntoSticky = $droppable.data('sticky');
+  var droppedSticky = $dropped.data('sticky');
 
+  if (droppedIntoGroup) {
+    CLIENT.publish('/groups/add_sticky', { id: droppedIntoGroup.id, sticky_id: droppedSticky.id });
+  } else {
+    var group = {
+      retrospective_id: RETRO.id,
+      initial_sticky_id: droppedIntoSticky.id,
+      sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
+    };
+
+    CLIENT.publish('/groups/create', { group: group });
+  }
+}
+
+$(function() {
   if (RETRO) {
     subscribeForRetroGroups();
   }

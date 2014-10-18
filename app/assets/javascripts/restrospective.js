@@ -3,8 +3,7 @@ function reloadStickies(){
     accept: function(el){
       return el.hasClass('single');
     },
-    drop: function(event, ui){
-      console.log('sticky');
+    drop: function(event, ui) {
       groupSticky($(this), ui.draggable);
     }
   });
@@ -38,7 +37,7 @@ function reloadStickies(){
 }
 
 function createSticky($elem, sticky){
-  var newSticky = $("<li>").addClass("sticky single good").data({ sticky: sticky });
+  var newSticky = $("<li>").addClass('sticky single idea').data({ sticky: sticky });
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));
   var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-sticky');
@@ -54,8 +53,7 @@ function ungroupSticky($item) {
   })
 }
 
-function groupSticky($elem, $item) {
-
+function drawGroupSticky($elem, $item) {
   if(!$elem.hasClass('grouped')){
     $elem.addClass('group-color').removeClass('single');
     $elem.find('.remove-sticky').remove();

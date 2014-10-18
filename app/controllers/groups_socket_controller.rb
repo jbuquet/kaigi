@@ -22,4 +22,18 @@ class GroupsSocketController < FayeRails::Controller
     end
   end
 
+  channel '/groups/add_sticky' do
+    monitor :publish do
+      sticky = Sticky.find_by_id(data['sticky_id'])
+
+      if sticky && !sticky.group_id
+        sticky.update_attribute('group_id', data['id'])
+
+        GroupsSocketController.publish("/retrospectives/#{sticky.retrospective.id}/groups/sticky_added",
+                                       { group: sticky.group, sticky: sticky })
+
+      end
+    end
+  end
+
 end
