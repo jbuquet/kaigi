@@ -18,7 +18,7 @@ function subscribeForRetroUsers() {
     });
 
     if (!userExists) {
-      $('#users').append(span);
+      $('#users').removeClass('hide').append(span);
     }
   });
 
