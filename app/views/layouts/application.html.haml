@@ -24,7 +24,39 @@
         .col-md-3#retro-name
           Kaigi retrospective
         .col-md-4#retro-time
-          10:20:20
+
+          = link_to '10:20:20', '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown'
+          %ul.dropdown-menu.time-box
+            %li.current-timebox
+              %span
+                %span Current timebox
+                = link_to 'End', '#' , class: 'end-btn'
+            %li
+              %span
+                11:00
+              %span
+                = link_to '' , class: 'edit-time-btn' do
+                  %i.fa.fa-pencil
+              %span
+                = link_to '' , class: 'remove-time-btn' do
+                  %i.fa.fa-trash
+            %li
+              11:00
+              %span
+                = link_to '' , class: 'edit-time-btn' do
+                  %i.fa.fa-pencil
+                %span
+                  = link_to '' , class: 'remove-time-btn' do
+                    %i.fa.fa-trash
+            %li
+
+              11:00
+              %span
+                = link_to '' , class: 'edit-time-btn' do
+                  %i.fa.fa-pencil
+                %span
+                  = link_to '' , class: 'remove-time-btn' do
+                    %i.fa.fa-trash
         .col-md-4#retro-share
           .share-button.right-floated
             = link_to  '#', 'data-toggle' => 'modal', 'data-target' => '#shareModal' do

@@ -38,7 +38,10 @@ body{
   border-right: 1px solid #F1F1F1;
 }
 
-#retro-time{
+#retro-time {
+  a{
+    color: #DF4B61;
+  }
   font-size: 36px;
   font-weight: 300;
   border-right: 1px solid #F1F1F1;
@@ -160,3 +163,36 @@ body{
     margin-top: 20px;
   }
 }
+
+.time-box{
+    width: 100%;
+
+  li{
+    font-size: 23px;
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #F1F1F1;
+    &.current-timebox{
+      font-size: 23px;
+      text-align: left;
+      color: #DF4B61 ;
+      text-align: center;
+
+      span, a {
+        margin: 20px;
+      }
+      .end-btn {
+        background-color: #DF4B61 ;
+        color: #ffffff !important;
+        padding: 3px 10px;
+      }
+      .remove-time-btn{
+
+      }
+    }
+    &:last-child{
+      border: none;
+    }
+  }
+
+  }
