@@ -12,13 +12,17 @@ function subscribeForRetroUsers() {
                         .data({ user: user });
 
     var userExists = false;
+    var otherUsersConnected = -1;
     $('#users .user').each(function() {
       var $this = $(this);
+      otherUsersConnected++;
       userExists = $this.data('user').id == user.id;
     });
 
     if (!userExists) {
+
       $('#users').removeClass('hide').append(span);
+      $('.dropdown-toggle').text('+' + otherUsersConnected);
     }
   });
 
