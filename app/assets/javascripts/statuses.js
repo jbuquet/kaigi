@@ -1,6 +1,9 @@
 $(function() {
-  $('#start_current_time').prop('disabled', true);
-  $('#end_current_time').prop('disabled', true);
+  $('.dropdown-menu').click(function(e) {
+    e.stopPropagation();
+  });
+
+  $('#start_end_current_time').prop('disabled', true);
 
   $('#set_time_next_phase').click(function(e) {
     e.preventDefault();
@@ -18,6 +21,6 @@ $(function() {
   CLIENT.subscribe('/statuses/to_start_next_phase', function() {
     // TODO: close modal
 
-    $('#start_current_time').prop('disabled', false);
+    $('#start_end_current_time').prop('disabled', false);
   });
 });

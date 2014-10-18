@@ -1,15 +1,4 @@
 - if current_user
-  %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
-    %input#start_current_time{ type: :submit, value: 'Start' }
-    %input#end_current_time{ type: :submit, value: 'End' }
-
-    #write_stickies_time_section
-      %span= 'Time next phase:'
-      %input{ name: 'status[minutes]', type: 'number' }
-      %input{ name: 'status[seconds]', type: 'number' }
-      %input#set_time_next_phase{ type: :submit, value: 'Set' }
-    %br
-
   .container-stickies
     %ul#stickies
       - current_retro.groups.each do |group|

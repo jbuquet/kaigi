@@ -1,0 +1,12 @@
+%form#new_statuses{ 'accept-charset'=> 'UTF-8' }
+  %li.current-timebox
+    %span
+      %span Current timebox
+      %input#start_end_current_time{ type: :submit, value: 'Start', class: 'end-btn' }
+
+  %li#write_stickies_time_section
+    %span
+      %span= 'Time next phase:'
+      %input{ name: 'status[minutes]', type: 'number' }
+      %input{ name: 'status[seconds]', type: 'number' }
+      %input#set_time_next_phase{ type: :submit, value: 'Set' }

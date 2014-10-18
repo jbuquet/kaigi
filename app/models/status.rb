@@ -21,26 +21,7 @@ class Status < ActiveRecord::Base
 
     else
       current_status = Status.find(current_status_id)
-
-      if current_status.status_type == WRITE_STICKIES
-        status = Status.create!({ :status_type => VOTE_GROUPS,
-                         :estimated_duration =>  status_data['estimated_duration'],
-                         :retrospective_id => retrospective_id
-                       })
-
-        retrospective.update_attribute(:current_status_id, status.id)
-
-      elsif current_status.status_type == VOTE_GROUPS
-        status = Status.create!({ :status_type => DISCUSS_STICKIES,
-                                  :estimated_duration =>  status_data['estimated_duration'],
-                                  :retrospective_id => retrospective_id
-                                })
-
-        retrospective.update_attribute(:current_status_id, status.id)
-
-      elsif current_status.status_type == DISCUSS_STICKIES
-        # TODO
-      end
+      current_status.update_attribute(:estimated_duration, status_data['estimated_duration'])
     end
   end
 end
