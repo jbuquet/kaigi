@@ -4,7 +4,7 @@
       .modal-content
         .modal-header
           %h4.modal-title
-            Current timebox
+            = "Set timebox to next stage: #{next_status_name}"
 
         .modal-body.clearfix
           - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
@@ -19,12 +19,10 @@
             %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
               %li#set_timebox_section
                 .row
-                  .col-md-3.col-md-offset-3
+                  .col-md-2.col-md-offset-3
                     %input{ name: 'status[minutes]', min: '00', max: '59',  value: '00', type: 'number', class: 'time-input text-center ' }
-                  .time-dots
-                    = ':'
                   .col-md-3
-                    %input{ name: 'status[seconds]', min: '00', max: '59', value: '00', type: 'number', class: 'time-input text-center' }
+                    %span= 'minutes'
               %li.current-timebox
                 %span
                   %input#start_current_time{ type: :submit, value: 'Start', class: 'end-btn radius2px' }

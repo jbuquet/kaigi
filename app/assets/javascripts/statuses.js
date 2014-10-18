@@ -4,8 +4,7 @@ $(function() {
 
     var status = {};
 
-    status.estimated_duration = parseInt($('input[name="status[minutes]"]').val()) * 60 +
-                                parseInt($('input[name="status[seconds]"]').val());
+    status.estimated_duration = parseInt($('input[name="status[minutes]"]').val()) * 60;
 
     status.retrospective_id = RETRO.id;
 
