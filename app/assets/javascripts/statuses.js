@@ -3,7 +3,7 @@ $(function() {
     e.stopPropagation();
   });
 
-  if (RETRO.current_status_id) {
+  if (RETRO && RETRO.current_status_id) {
     $('#start_end_current_time').val('End');
     $('input[name="status[minutes]"]').prop('disabled', true).addClass('disabled').val(parseInt(CURRENT_STATUS.estimated_duration/60));
     $('input[name="status[seconds]"]').prop('disabled', true).addClass('disabled').val(CURRENT_STATUS.estimated_duration%60);

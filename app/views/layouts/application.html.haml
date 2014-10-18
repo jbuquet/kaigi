@@ -26,7 +26,8 @@
           Kaigi retrospective
         .col-md-4#retro-time
 
-          = link_to '10:20:20', '#', id: 'timer', class: 'dropdown-toggle', 'data-toggle' => 'dropdown'
+          = link_to '--:--:--', '#', id: 'timer', class: 'dropdown-toggle',
+                                                  data: { toggle: :dropdown }
 
           %ul.dropdown-menu.time-box
 

@@ -28,6 +28,7 @@ class Status < ActiveRecord::Base
                      })
     end
 
+    status.update_attribute(:start_time, Time.now)
     retrospective.update_attribute(:current_status_id, new_status.id)
   end
 
