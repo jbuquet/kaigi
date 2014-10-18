@@ -14,6 +14,7 @@ function subscribeForRetroGroups() {
       }
     });
     $droppable.data('group', group);
+
     drawGroupSticky($droppable, $dropped)
   });
 
@@ -26,12 +27,17 @@ function subscribeForRetroGroups() {
     $('#stickies .sticky').each(function() {
       var $this = $(this);
 
-      if ($this.data('sticky').id == group.initial_sticky_id) {
-        $droppable = $this;
-      } else if ($this.data('sticky').id == sticky.id) {
+
+      if($this.data('group') !== undefined){
+        if ($this.data('group').initial_sticky_id == group.initial_sticky_id) {
+          $droppable = $this;
+        }
+      }
+      else if ($this.data('sticky').id == sticky.id) {
         $dropped = $this;
       }
     });
+
 
     drawGroupSticky($droppable, $dropped)
   });

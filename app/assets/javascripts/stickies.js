@@ -1,5 +1,6 @@
 function subscribeForRetroStickies() {
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/stickies/created', function(sticky) {
+    console.log(sticky)
     createSticky($('.new-sticky'), sticky);
   });
 
@@ -23,8 +24,12 @@ $(function() {
 
     var $this = $(this);
     var sticky = $this.serializeObject().sticky;
+    console.log('ppp');
+    console.log(sticky);
+
     sticky.retrospective_id = RETRO.id;
     sticky.user_id = USER.id;
+    sticky.sticky_type = 'bad';
 
     CLIENT.publish('/stickies/create', { sticky: sticky });
 

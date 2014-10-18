@@ -1,4 +1,5 @@
 function reloadStickies(){
+
   $('.sticky').droppable({
     accept: function(el){
       return el.hasClass('single');
@@ -8,7 +9,7 @@ function reloadStickies(){
     }
   });
 
-  $('.single').draggable({
+  $('li.single, li.grouped, li.group-color').draggable({
     cancel: 'a.icon',
     revert: 'invalid',
     containment: 'document',
@@ -16,15 +17,6 @@ function reloadStickies(){
     cursor: 'move',
     greedy: true
 
-  });
-
-  $('.grouped').draggable({
-    cancel: 'a.icon',
-    revert: 'invalid',
-    containment: 'document',
-    helper: 'clone',
-    cursor: 'move',
-    greedy: true
   });
 
   $('.sticky').textfill({
@@ -34,10 +26,13 @@ function reloadStickies(){
     explicitHeight: 165,
     innerTag: 'p'
   });
+
+  $('.grouped').css({ width: '48px', height: '48px' })
 }
 
 function createSticky($elem, sticky){
-  var newSticky = $("<li>").addClass('sticky single idea').data({ sticky: sticky });
+  sticky.sticky_type = 'bad';
+  var newSticky = $("<li>").addClass('sticky single').addClass(sticky.sticky_type).data({ sticky: sticky });
   var initial = $('<span>').addClass('pull-left user-initial')
                            .css('background-color', sticky.user.color)
                            .text(userInitial(sticky.user));
@@ -60,6 +55,7 @@ function drawGroupSticky($elem, $item) {
   if(!$elem.hasClass('grouped')){
     $elem.addClass('group-color').removeClass('single');
     $elem.find('.remove-sticky').remove();
+    $elem.find('.user-initial').remove();
   }
 
   $item.removeClass('sticky');
@@ -69,6 +65,7 @@ function drawGroupSticky($elem, $item) {
     var $list = $elem.find('ul');
     $item.css({ width: '48px', height: '48px' }).removeClass('single').addClass('grouped');
     $item.find('.remove-sticky').remove();
+    $item.find('.user-initial').remove();
     $item.appendTo( $list ).fadeIn();
   });
 }

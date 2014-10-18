@@ -8,16 +8,16 @@
                                  rows: '6' }
       - current_retro.groups.each do |group|
         - initial_sticky = group.initial_sticky
-        %li.sticky.idea.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }
+        %li.sticky.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }
           %ul.sticky-container
             - group.stickies.each do |sticky|
               - if sticky != initial_sticky
-                %li.idea.grouped{ 'data-sticky' => sticky.to_json }
+                %li.grouped{ 'data-sticky' => sticky.to_json, class: 'bad' }
                   %p= sticky.body
           %p= initial_sticky.body
 
       - current_retro.ungrouped_stickies.each do |sticky|
-        %li.sticky.idea.single{ 'data-sticky' => sticky.to_json }
+        %li.sticky.single{ 'data-sticky' => sticky.to_json, class: 'bad' }
           %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
             = user_initial(sticky.user)
           %i.fa.fa-trash.remove-sticky.pull-right
