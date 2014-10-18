@@ -42,6 +42,18 @@ function subscribeForRetroGroups() {
     drawGroupSticky($droppable, $dropped)
   });
 
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/voted', function(data) {
+    var group = data.group;
+    var user = data.user;
+
+    $('#stickies .group').each(function() {
+      var $this = $(this);
+      if ($this.data('group').id == group.id) {
+        $this.find('.vote-count').html(group.votes);
+      }
+    });
+  });
+
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/deleted', function(group) {
     $('#groups .group').each(function() {
       var $this = $(this);
@@ -94,6 +106,14 @@ $(function() {
     var group = $this.parents('.group').data('group');
 
     CLIENT.publish('/groups/delete', { id: group.id });
+  });
+
+  $('#stickies').on('click', '.group .vote-group', function() {
+    var $this = $(this);
+
+    var group = $this.parents('.group').data('group');
+
+    CLIENT.publish('/groups/vote', { id: group.id, user_id: USER.id });
   });
 
 });

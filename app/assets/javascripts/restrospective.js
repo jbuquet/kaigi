@@ -57,10 +57,23 @@ function ungroupSticky($item) {
 }
 
 function drawGroupSticky($elem, $item) {
-  if(!$elem.hasClass('grouped')){
+  if(!$elem.hasClass('grouped')) {
     $elem.addClass('group-color').removeClass('single');
     $elem.find('.remove-sticky').remove();
     $elem.find('.user-initial').remove();
+  }
+
+  if(!$elem.hasClass('group')) {
+    $elem.addClass('group');
+
+    var group = $elem.data('group');
+    var votesCount = $('<span>').addClass('badge pull-left');
+    votesCount.append('Votes:');
+    votesCount.append($('<span>').addClass('vote-count').html(group.votes));
+    $elem.prepend(votesCount);
+
+    var addVote = $('<span>').addClass('badge vote-group pull-right').html('+1');
+    $elem.prepend(addVote);
   }
 
   $item.fadeOut(function() {
@@ -70,7 +83,7 @@ function drawGroupSticky($elem, $item) {
     $item.addClass('sticky-min').removeClass('single').addClass('grouped');
     $item.find('.remove-sticky').remove();
     $item.find('.user-initial').remove();
-    $item.appendTo( $list ).fadeIn();
+    $item.appendTo($list).fadeIn();
   });
 }
 

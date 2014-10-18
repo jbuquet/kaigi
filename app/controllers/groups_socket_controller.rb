@@ -24,6 +24,23 @@ class GroupsSocketController < FayeRails::Controller
     end
   end
 
+  channel '/groups/vote' do
+    monitor :publish do
+      group = Group.find_by_id(data['id'])
+      user = User.find_by_id(data['user_id'])
+
+      if group && user && user.has_votes_left?
+        Group.update_counters group, :votes => 1
+        User.update_counters user, :used_votes => 1
+
+        group.reload
+        user.reload
+        GroupsSocketController.publish("/retrospectives/#{group.retrospective.id}/groups/voted",
+                                       { group: group, user: user })
+      end
+    end
+  end
+
   channel '/groups/add_sticky' do
     monitor :publish do
       sticky = Sticky.find_by_id(data['sticky_id'])

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018183307) do
+ActiveRecord::Schema.define(version: 20141018192942) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141018183307) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "current_status_id"
+    t.integer  "max_votes",         default: 5
   end
 
   create_table "statuses", force: true do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20141018183307) do
     t.string  "name"
     t.string  "color"
     t.integer "retrospective_id"
+    t.integer "used_votes",       default: 0
   end
 
 end
