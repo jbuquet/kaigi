@@ -1,1 +1,9 @@
-'# TODO'
+= form_tag(retrospectives_path, :method => :post) do
+  = label_tag('retrospectiveName', 'Name')
+  = text_field_tag('retrospective[name]')
+
+  %button= 'Save'
+
+%h4= 'Retros:'
+- @retros.each do |retro|
+  %p= retro.public_key
