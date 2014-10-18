@@ -58,6 +58,7 @@ function groupSticky($elem, $item) {
 
   if(!$elem.hasClass('grouped')){
     $elem.addClass('group-color').removeClass('single');
+    $elem.find('.remove-sticky').remove();
   }
 
   $item.removeClass('sticky');
@@ -66,6 +67,7 @@ function groupSticky($elem, $item) {
     $item.find('ul').remove();
     var $list = $elem.find('ul');
     $item.css({ width: '48px', height: '48px' }).removeClass('single').addClass('grouped');
+    $item.find('.remove-sticky').remove();
     $item.appendTo( $list ).fadeIn();
   });
 }
@@ -95,5 +97,7 @@ $( document ).ready(function() {
       return false;
     }
   });
+
+  $('.new-sticky').tooltip()
 
 });
