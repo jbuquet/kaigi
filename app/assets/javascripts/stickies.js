@@ -11,7 +11,12 @@ $(function() {
   });
 
   CLIENT.subscribe('/stickies/deleted', function(sticky) {
-    console.log('Sticky deleted ' + sticky.id + ', do something or delete!.');
+    $('#stickies .sticky').each(function() {
+      var $this = $(this);
+      if ($this.data('sticky').id == sticky.id) {
+        $this.remove();
+      }
+    })
   });
 
   $('form#new_sticky').submit(function(e) {
@@ -31,8 +36,6 @@ $(function() {
 
     var sticky = $this.parents('.sticky').data('sticky');
     CLIENT.publish('/stickies/delete', { id: sticky.id });
-
-    $this.parents('.sticky').remove();
   });
 
 });
