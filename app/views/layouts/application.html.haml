@@ -23,12 +23,12 @@
           #logo-container
             = link_to image_tag('kaigi-icon.png'), '/'
         .col-md-3#retro-name
-          Kaigi retrospective
+          %span= "#{current_retro.name}: #{current_retro.current_status.status_type}"
         .col-md-4#retro-time
 
           = link_to '--:--:--', '#', id: 'timer'
 
-          - if current_retro.current_status_id
+          - if !set_timebox_in_current_status
             %input#end_current_time{ type: :submit, value: 'End', class: 'end-btn radius2px' }
 
         .col-md-4#retro-share

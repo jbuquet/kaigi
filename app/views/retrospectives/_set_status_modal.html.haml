@@ -1,4 +1,4 @@
-- unless current_retro.current_status_id
+- if set_timebox_in_current_status
   .modal.fade.in.show#currentTimeboxModal
     .modal-dialog
       .modal-content
@@ -7,6 +7,14 @@
             Current timebox
 
         .modal-body.clearfix
+          - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
+            .share-link
+              %span= retrospective_url(current_retro.public_key)
+
+            = link_to 'Copy', '#', class: 'copy'
+
+            %hr.time-box-separator
+
           %ul.time-box
             %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
               %li#set_timebox_section

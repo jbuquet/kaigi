@@ -11,6 +11,14 @@ class RetrospectivesController < ApplicationController
 
     retrospective = Retrospective.create!(retrospective_data.merge(public_key: SecureRandom.urlsafe_base64))
 
+    status = Status.create!({ :status_type => Status::INVITE_USERS,
+                              :retrospective_id => retrospective.id
+                            })
+
+    status.update_attribute(:start_time, Time.now)
+
+    retrospective.update_attribute(:current_status_id, status.id)
+
     user = retrospective.users.create!(:name => owner_name, color: COLORS.sample)
 
     session[:is_manager] = true

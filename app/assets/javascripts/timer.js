@@ -1,5 +1,10 @@
 function timerExpired() {
-  CLIENT.publish('/statuses/end_current_phase', { retrospective_id: RETRO.id });
+  var status = {
+    estimated_duration: 0,
+    retrospective_id: RETRO.id
+  };
+
+  CLIENT.publish('/statuses/end_current_phase', { status: status });
 }
 
 function addMinutes(date, minutes) {
@@ -7,7 +12,8 @@ function addMinutes(date, minutes) {
 }
 
 $(function() {
-  if (!$.isEmptyObject(CURRENT_STATUS)) {
+  if (!$.isEmptyObject(CURRENT_STATUS) && CURRENT_STATUS.status_type != 'invite_users'
+        && CURRENT_STATUS.status_type != 'create_groups') {
     var liftoffTime = new Date(moment(CURRENT_STATUS.start_time).format());
     var estimatedMinutes = CURRENT_STATUS.estimated_duration / 60;
 

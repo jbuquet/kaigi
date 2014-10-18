@@ -15,7 +15,12 @@ $(function() {
   $('#end_current_time').click(function(e){
     e.preventDefault();
 
-    CLIENT.publish('/statuses/end_current_phase', { retrospective_id: RETRO.id });
+    var status = {
+      estimated_duration: 0,
+      retrospective_id: RETRO.id
+    };
+
+    CLIENT.publish('/statuses/end_current_phase', { status: status });
   });
 
   CLIENT.subscribe('/statuses/started_current_phase', function() {

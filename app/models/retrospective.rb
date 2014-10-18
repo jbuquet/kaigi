@@ -9,6 +9,6 @@ class Retrospective < ActiveRecord::Base
   end
 
   def current_status
-    Status.where(retrospective_id: self.id, duration: nil).first
+    Status.where(retrospective_id: self.id, duration: nil).last
   end
 end
