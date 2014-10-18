@@ -336,6 +336,10 @@ body{
       height: 42px;
       margin: 2px 2px 4px 2px
     }
+    .sticky-max {
+      width: 150px;
+      height: 150px;
+    }
   }
 }
 
@@ -479,4 +483,9 @@ ul {
 
 .time-box-separator {
   margin: 3em 0;
+}
+
+.container-stickies {
+  width: 100%;
+  height: 100%;
 }

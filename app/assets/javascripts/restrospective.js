@@ -52,15 +52,19 @@ function createSticky($elem, sticky){
 
 function ungroupSticky($item) {
   $item.fadeOut(function() {
-    $item.css('width', '200px').end().appendTo($('.container-stickies')).fadeIn();
+    $item.insertAfter($('.new-sticky')).fadeIn( function(){
+      $item.removeClass('sticky-min grouped').addClass('sticky-max single sticky');
+      $item.find('.remove-sticky').show();
+      $item.find('.user-initial').show();
+    })
   })
 }
 
 function drawGroupSticky($elem, $item) {
   if(!$elem.hasClass('grouped')) {
     $elem.addClass('group-color').removeClass('single');
-    $elem.find('.remove-sticky').remove();
-    $elem.find('.user-initial').remove();
+    $elem.find('.remove-sticky').hide();
+    $elem.find('.user-initial').hide();
   }
 
   if(!$elem.hasClass('group')) {
@@ -81,9 +85,10 @@ function drawGroupSticky($elem, $item) {
     $item.find('ul').remove();
     var $list = $elem.find('ul');
     $item.addClass('sticky-min').removeClass('single').addClass('grouped');
-    $item.find('.remove-sticky').remove();
-    $item.find('.user-initial').remove();
-    $item.appendTo($list).fadeIn();
+
+    $item.find('.remove-sticky').hide();
+    $item.find('.user-initial').hide();
+    $item.appendTo( $list ).fadeIn();
   });
 }
 
@@ -98,6 +103,7 @@ $( document ).ready(function() {
   $('.container-stickies').droppable({
     accept: '.grouped',
     drop: function(event, ui) {
+      console.log('ungroup');
       ungroupSticky(ui.draggable);
     }
   });
