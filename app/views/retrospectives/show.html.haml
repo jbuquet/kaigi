@@ -15,17 +15,20 @@
 
   %h4 Stickies
 
-  %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
-    %textarea#sticky_body{ name: 'sticky[body]'}
 
-    .actions
-      %input{ type: :submit, value: 'Create Sticky' }
+  .container-stickies
+    %ul#stickies
+      - current_retro.stickies.each do |sticky|
+        %li.sticky.idea.single{ 'data-sticky' => sticky.to_json }
+          %ul.sticky-container
+          %p= sticky.body
+          %i.glyphicon.glyphicon-remove.remove-sticky
 
-  #stickies
-    - current_retro.stickies.each do |sticky|
-      %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
-        #{sticky.id} #{sticky.body}
-        %i.glyphicon.glyphicon-remove.remove-sticky
+      %li.new-sticky.new
+        %ul.sticky-container
+        %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
+          %textarea.sticky-text{ :maxlength => '50', :resize => 'off', :cols => '15', :name => 'sticky[body]', :rows => '6'}
+
 
   %h4 Groups
   %form#new_group{ 'accept-charset'=> 'UTF-8' }

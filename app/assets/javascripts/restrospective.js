@@ -37,20 +37,20 @@ function reloadStickies(){
   });
 }
 
-function createSticky($elem){
-  var newSticky = "<li class='sticky single'><ul class='sticky-container'></ul><p></p></li>";
+function createSticky($elem, sticky){
+  var newSticky = $("<li>").addClass("sticky single good").data({ sticky: sticky });
+  newSticky.append($("<ul>").addClass('sticky-container'));
+  newSticky.append($("<p>").text(sticky.body));
+  var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-sticky');
+  newSticky.append(icon);
+
   $(newSticky).insertBefore($elem);
-
-  $elem.prev().addClass('good');
-  $elem.prev().find('p').text($elem.find('textarea').val());
-  $elem.find('textarea').val('');
-
   reloadStickies();
 }
 
 function ungroupSticky($item) {
   $item.fadeOut(function() {
-    $item.css('width', '200px').end().appendTo($('.container-sticky')).fadeIn();
+    $item.css('width', '200px').end().appendTo($('.container-stickies')).fadeIn();
   })
 }
 
@@ -74,7 +74,7 @@ $( document ).ready(function() {
 
   reloadStickies();
 
-  $('.container-sticky').droppable({
+  $('.container-stickies').droppable({
     accept: '.grouped',
     drop: function(event, ui) {
       console.log('container');
@@ -84,8 +84,14 @@ $( document ).ready(function() {
 
   $('.new-sticky').bind('keypress', function(e) {
     if ((e.keyCode || e.which) == 13) {
-//      $(this).parents('form').submit()
-      createSticky($(this));
+      var sticky = {
+        body: $(this).find("textarea").val(),
+        retrospective_id: RETRO.id,
+        user_id: USER.id
+      };
+
+      $(this).find("textarea").val("");
+      CLIENT.publish('/stickies/create', { sticky: sticky });
       return false;
     }
   });

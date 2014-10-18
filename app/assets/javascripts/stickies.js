@@ -1,5 +1,6 @@
 function subscribeForRetroStickies() {
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/stickies/created', function(sticky) {
+    createSticky($('.new-sticky'), sticky);
     var span = $('<span>').addClass('sticky label label-primary')
                           .html(sticky.id + ' ' + sticky.body)
                           .data({ sticky: sticky });
