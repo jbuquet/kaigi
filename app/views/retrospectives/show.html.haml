@@ -5,7 +5,14 @@
         %ul.sticky-container
           %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
             %textarea.sticky-text{ maxlength: '50', resize: 'off', cols: '15', name: 'sticky[body]',
-                                 rows: '6' }
+                                 rows: '5' }
+            .sticky-types
+              .sticky-type.good-type
+                = image_tag('good.png')
+              .sticky-type.idea-type
+                = image_tag('idea.png')
+              .sticky-type.bad-type
+                = image_tag('bad.png')
       - current_retro.groups.each do |group|
         - initial_sticky = group.initial_sticky
         %li.sticky.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }

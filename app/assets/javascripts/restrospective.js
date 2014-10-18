@@ -27,7 +27,7 @@ function reloadStickies(){
     innerTag: 'p'
   });
 
-  $('.grouped').css({ width: '48px', height: '48px' })
+  $('.grouped').addClass('sticky-min')
 }
 
 function createSticky($elem, sticky){
@@ -39,17 +39,10 @@ function createSticky($elem, sticky){
   newSticky.append($('<i>').addClass('fa fa-trash remove-sticky pull-right'));
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));
+  newSticky.addClass($elem.attr('class')).removeClass('new-sticky');
 
   $(newSticky).insertAfter($elem);
   reloadStickies();
-}
-
-function getStickerType(){
-  $.each(['bad-sticky', 'good-sticky', 'idea-sticky'], function( index, value ) {
-    if($('.new-sticky').hasClass(value)){
-      return value;
-    }
-  });
 }
 
 function ungroupSticky($item) {
@@ -69,7 +62,7 @@ function drawGroupSticky($elem, $item) {
     $item.removeClass('sticky');
     $item.find('ul').remove();
     var $list = $elem.find('ul');
-    $item.css({ width: '48px', height: '48px' }).removeClass('single').addClass('grouped');
+    $item.addClass('sticky-min').removeClass('single').addClass('grouped');
     $item.find('.remove-sticky').remove();
     $item.find('.user-initial').remove();
     $item.appendTo( $list ).fadeIn();
@@ -93,7 +86,7 @@ $( document ).ready(function() {
         body: $(this).find("textarea").val(),
         retrospective_id: RETRO.id,
         user_id: USER.id,
-        sticky_type: $(this).attr('rel')
+        sticky_type: $(this).data('type')
       };
 
       console.log('/stickies/create');
@@ -120,5 +113,17 @@ $( document ).ready(function() {
       $settings_btn.addClass('fa-cog');
     }
   });
+
+  $('.good-type').on('click', function(event){
+    $('.new-sticky').attr('class', 'new-sticky').addClass('good').data('type', 'good');
+  })
+
+  $('.idea-type').on('click', function(event){
+    $('.new-sticky').attr('class', 'new-sticky').addClass('idea').data('type', 'idea');
+  })
+
+  $('.bad-type').on('click', function(event){
+    $('.new-sticky').attr('class', 'new-sticky').addClass('bad').data('type', 'bad');
+  })
 
 });
