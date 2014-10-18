@@ -22,4 +22,5 @@ class RetrospectivesController < ApplicationController
   def retro_params
     params.require(:retrospective).permit(:name, :public_key)
   end
+
 end

@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018014245) do
+ActiveRecord::Schema.define(version: 20141018020701) do
 
   create_table "retrospectives", force: true do |t|
     t.string   "name"
     t.text     "public_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stickies", force: true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "retrospective_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
