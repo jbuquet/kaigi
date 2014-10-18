@@ -23,8 +23,6 @@ function subscribeForRetroUsers() {
 }
 
 $(function() {
-  USER = $('body').data('user');
-
   if (USER) {
     subscribeForRetroUsers();
   }

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018024833) do
+ActiveRecord::Schema.define(version: 20141018062333) do
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "votes",            default: 0
+    t.integer  "retrospective_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "retrospectives", force: true do |t|
     t.string   "name"

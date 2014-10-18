@@ -11,6 +11,10 @@
 
     = csrf_meta_tags
 
+  :javascript
+    RETRO = JSON.parse('#{current_retro.to_json}');
+    USER = JSON.parse('#{current_user.try(:to_json) || {}}');
+
   %body{ data: { retro: current_retro.to_json, user: current_user.try(:to_json) } }
     %nav.navbar.navbar-custom.navbar-fixed-top.navbar-retro{:role => "navigation"}
       .row.header-container
@@ -49,4 +53,5 @@
                 N
           .username.right-floated
             = current_user.try(:name)
+
     = yield

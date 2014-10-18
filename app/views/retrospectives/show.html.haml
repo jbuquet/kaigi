@@ -2,13 +2,14 @@
   %p= "Name: #{current_retro.name}"
   %p= "Link: #{retrospective_link(current_retro)}"
 
+  %h4 Stickies
+
   %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
     %textarea#sticky_body{ name: 'sticky[body]'}
 
     .actions
       %input{ type: :submit, value: 'Create Sticky' }
 
-  %h4 Stickies
   #stickies
     - current_retro.stickies.each do |sticky|
       %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
@@ -20,6 +21,19 @@
     - current_retro.users.each do |user|
       %span.user.label.label-success{ 'data-user' => user.to_json }
         #{user.id} #{user.name[0]}
+
+  %h4 Groups
+  %form#new_group{ 'accept-charset'=> 'UTF-8' }
+    %textarea#group_body{ name: 'group[name]'}
+
+    .actions
+      %input{ type: :submit, value: 'Create Group' }
+
+  #groups
+    - current_retro.groups.each do |group|
+      %span.group.label.label-warning{ 'data-group' => group.to_json }
+        #{group.id} #{group.name}
+        %i.glyphicon.glyphicon-remove.remove-group
 
 - else
   = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key),

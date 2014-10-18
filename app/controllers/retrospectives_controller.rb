@@ -20,7 +20,7 @@ class RetrospectivesController < ApplicationController
   end
 
   def show
-    session[:user_id]
+
   end
 
   private
