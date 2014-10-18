@@ -19,7 +19,7 @@
       %input{ type: :submit, value: 'Create Sticky' }
 
   #stickies
-    - Sticky.all.each do |sticky|
+    - current_retro.stickies.each do |sticky|
       %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
         #{sticky.id} #{sticky.body}
         %i.glyphicon.glyphicon-remove.remove-sticky

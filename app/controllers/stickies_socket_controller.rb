@@ -1,11 +1,11 @@
 class StickiesSocketController < FayeRails::Controller
 
   observe Sticky, :after_create do |sticky|
-    StickiesSocketController.publish('/stickies/created', sticky.attributes)
+    StickiesSocketController.publish("/retrospectives/#{sticky.retrospective.id}/stickies/created", sticky.attributes)
   end
 
   observe Sticky, :after_destroy do |sticky|
-    StickiesSocketController.publish('/stickies/deleted', sticky.attributes)
+    StickiesSocketController.publish("/retrospectives/#{sticky.retrospective.id}/stickies/deleted", sticky.attributes)
   end
 
   channel '/stickies/create' do

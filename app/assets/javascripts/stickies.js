@@ -1,8 +1,8 @@
-$(function() {
-  CLIENT.subscribe('/stickies/created', function(sticky) {
+function subscribeForRetroStickies() {
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/stickies/created', function(sticky) {
     var span = $('<span>').addClass('sticky label label-primary')
-                          .html(sticky.id + ' ' + sticky.body)
-                          .data({ sticky: sticky });
+      .html(sticky.id + ' ' + sticky.body)
+      .data({ sticky: sticky });
 
     var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-sticky');
     span.append(icon);
@@ -10,7 +10,7 @@ $(function() {
     $('#stickies').append(span);
   });
 
-  CLIENT.subscribe('/stickies/deleted', function(sticky) {
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/stickies/deleted', function(sticky) {
     $('#stickies .sticky').each(function() {
       var $this = $(this);
       if ($this.data('sticky').id == sticky.id) {
@@ -18,6 +18,12 @@ $(function() {
       }
     })
   });
+}
+
+$(function() {
+  if (RETRO) {
+    subscribeForRetroStickies();
+  }
 
   $('form#new_sticky').submit(function(e) {
     e.preventDefault();
