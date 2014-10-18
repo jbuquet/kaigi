@@ -12,6 +12,41 @@
     = csrf_meta_tags
 
   %body{ data: { retro: current_retro.to_json, user: current_user.try(:to_json) } }
-    %h2 User: #{current_user.try(:name)}
-
+    %nav.navbar.navbar-custom.navbar-fixed-top.navbar-retro{:role => "navigation"}
+      .row.header-container
+        .col-md-1
+          #logo-container
+            = link_to image_tag('kaigi-icon.png'), '/'
+        .col-md-3#retro-name
+          Kaigi retrospective
+        .col-md-4#retro-time
+          10:20:20
+        .col-md-4#retro-share
+          .share-button.right-floated
+            = link_to  '#' do
+              %i.fa.fa-link
+              Share
+          .participants-count.right-floated
+            = link_to '+7', '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown'
+            %ul.dropdown-menu.connected-users
+              %li
+                J
+              %li
+                R
+              %li
+                N
+              %li
+                J
+              %li
+                R
+              %li
+                N
+              %li
+                J
+              %li
+                R
+              %li
+                N
+          .username.right-floated
+            = current_user.try(:name)
     = yield

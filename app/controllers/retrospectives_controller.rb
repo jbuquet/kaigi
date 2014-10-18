@@ -1,7 +1,8 @@
 class RetrospectivesController < ApplicationController
 
   def new
-
+    @retros = Retrospective.all
+    render layout: 'landing'
   end
 
   def create

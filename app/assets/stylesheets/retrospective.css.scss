@@ -1,0 +1,112 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #F1F1F1 ;
+}
+
+.navbar-retro{
+  position: relative;
+  color: #686867;
+
+}
+
+.navbar{
+  padding: 0;
+  height: 60px;
+}
+
+.header-container{
+  height: 100%;
+  vertical-align: middle;
+  line-height: 60px;
+  border-bottom: 1px solid #D8D8D8;
+  background-color: #ffffff;
+}
+
+#logo-container{
+  background-color: #EE9B22;
+  width: 60px;
+  text-align: center;
+  background-size: contain;
+
+}
+
+#retro-name{
+  font-size: 18px;
+
+  font-weight: 400;
+  font-style: italic;
+  border-right: 1px solid #F1F1F1;
+}
+
+#retro-time{
+  font-size: 36px;
+  font-weight: 300;
+  border-right: 1px solid #F1F1F1;
+  text-align: center;
+}
+
+#retro-share{
+  text-align: center;
+  a{
+    color: #686867;
+  }
+  .right-floated{
+    float:right;
+    margin-left: 20px;
+  }
+  .participants-count{
+    a{
+      padding: 5px;
+      background-color: #F1F1F1;
+      color: #686867;
+    }
+  }
+  .username{
+    color: #000000;
+    font-size: 11px;
+  }
+  .share-button{
+    a{
+      background-color: #EE9B22;
+      padding: 6px 15px;
+      margin-right: 10px;
+      color: #ffffff;
+      border-radius: 3px;
+      font-size: 11px;
+      border: 1px solid #EE8116;
+    }
+
+  }
+}
+
+.connected-users{
+  right: 23px;
+  left: auto;
+  width: 210px;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: -10px;
+  li{
+    float: left;
+    margin-left: 20px;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+    background-color: red;
+    margin-top: 5px;
+    color: #ffffff;
+  }
+
+  &:before{
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    top: -10px;
+    left: 86px;
+    border: 5px solid transparent;
+    border-bottom-color: #D8D8D8;
+  }
+
+}
+
