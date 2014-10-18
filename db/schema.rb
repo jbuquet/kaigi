@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018062333) do
+ActiveRecord::Schema.define(version: 20141018075740) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20141018062333) do
   create_table "retrospectives", force: true do |t|
     t.string   "name"
     t.text     "public_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "current_status_id"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "status_type"
+    t.integer  "estimated_duration"
+    t.integer  "duration"
+    t.integer  "retrospective_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
