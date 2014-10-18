@@ -110,3 +110,53 @@ body{
 
 }
 
+#startModal{
+  margin-top: 100px;
+  height: 400px;
+  .modal-header{
+    color: #686867;
+  }
+  .modal-content{
+    border-radius: 0;
+    padding: 20px;
+  }
+  input[type="submit"]{
+    background-color: #EE9B22;
+    width: 100px;
+    text-align: center;
+    border: none;
+    color: #ffffff;
+    height: 50px;
+    margin-left: 400px;
+    margin-bottom: 20px;
+  }
+}
+
+#shareModal{
+  margin-top: 100px;
+  height: 400px;
+  .modal-header{
+    color: #686867;
+  }
+  .modal-content{
+    border-radius: 0;
+    padding: 20px;
+  }
+  .share-link{
+    border: 1px solid #D8D8D8;
+    padding: 10px;
+    background-color: #F1F1F1;
+  }
+  a{
+    display: block;
+    background-color: #EE9B22;
+    width: 100px;
+    text-align: center;
+    border: none;
+    color: #ffffff;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 400px;
+    margin-top: 20px;
+  }
+}
