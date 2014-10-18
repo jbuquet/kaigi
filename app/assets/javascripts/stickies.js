@@ -1,8 +1,8 @@
 function subscribeForRetroStickies() {
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/stickies/created', function(sticky) {
     var span = $('<span>').addClass('sticky label label-primary')
-      .html(sticky.id + ' ' + sticky.body)
-      .data({ sticky: sticky });
+                          .html(sticky.id + ' ' + sticky.body)
+                          .data({ sticky: sticky });
 
     var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-sticky');
     span.append(icon);
