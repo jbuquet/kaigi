@@ -9,7 +9,7 @@ class RetrospectivesController < ApplicationController
     retrospective_data = retrospective_params
     owner_name = retrospective_data.delete(:owner_name)
 
-    retrospective = Retrospective.create!(retrospective_data.merge(:public_key => SecureRandom.urlsafe_base64(nil, true)))
+    retrospective = Retrospective.create!(retrospective_data.merge(public_key: SecureRandom.urlsafe_base64))
 
     user = retrospective.users.create!(:name => owner_name, color: COLORS.sample)
 

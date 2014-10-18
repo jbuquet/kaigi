@@ -1,7 +1,4 @@
 - if current_user
-  %p= "Name: #{current_retro.name}"
-  %p= "Link: #{retrospective_link(current_retro)}"
-
   %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
     %input#start_current_time{ type: :submit, value: 'Start' }
     %input#end_current_time{ type: :submit, value: 'End' }
@@ -12,8 +9,6 @@
       %input{ name: 'status[seconds]', type: 'number' }
       %input#set_time_next_phase{ type: :submit, value: 'Set' }
     %br
-
-  %h4 Stickies
 
 
   .container-stickies
@@ -27,7 +22,10 @@
       %li.new-sticky.new
         %ul.sticky-container
         %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
-          %textarea.sticky-text{ :maxlength => '50', :resize => 'off', :cols => '15', :name => 'sticky[body]', :rows => '6'}
+          %textarea.sticky-text{ maxlength: '50', resize: 'off', cols: '15', name: 'sticky[body]',
+                                 rows: '6' }
+
+  .clearfix
 
   %h4 Groups
   %form#new_group{ 'accept-charset'=> 'UTF-8' }
