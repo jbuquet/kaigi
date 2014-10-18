@@ -24,30 +24,15 @@
 
       - current_retro.ungrouped_stickies.each do |sticky|
         %li.sticky.idea.single{ 'data-sticky' => sticky.to_json }
+          %i.fa.fa-trash.remove-sticky.pull-right
           %ul.sticky-container
           %p= sticky.body
-          %i.glyphicon.glyphicon-remove.remove-sticky
 
       %li.new-sticky.new
         %ul.sticky-container
         %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
           %textarea.sticky-text{ maxlength: '50', resize: 'off', cols: '15', name: 'sticky[body]',
                                  rows: '6' }
-
-  .clearfix
-
-  %h4 Groups
-  %form#new_group{ 'accept-charset'=> 'UTF-8' }
-    %textarea#group_body{ name: 'group[name]'}
-
-    .actions
-      %input{ type: :submit, value: 'Create Group' }
-
-  #groups
-    - current_retro.groups.each do |group|
-      %span.group.label.label-warning{ 'data-group' => group.to_json }
-        #{group.id} #{group.name}
-        %i.glyphicon.glyphicon-remove.remove-group
 
 - else
   = render 'users/join_modal'

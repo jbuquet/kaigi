@@ -38,10 +38,9 @@ function reloadStickies(){
 
 function createSticky($elem, sticky){
   var newSticky = $("<li>").addClass('sticky single idea').data({ sticky: sticky });
+  newSticky.append($('<i>').addClass('fa fa-trash remove-sticky pull-right'));
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));
-  var icon = $('<i>').addClass('glyphicon glyphicon-remove remove-sticky');
-  newSticky.append(icon);
 
   $(newSticky).insertBefore($elem);
   reloadStickies();
@@ -77,7 +76,6 @@ $( document ).ready(function() {
   $('.container-stickies').droppable({
     accept: '.grouped',
     drop: function(event, ui) {
-      console.log('container');
       ungroupSticky(ui.draggable);
     }
   });

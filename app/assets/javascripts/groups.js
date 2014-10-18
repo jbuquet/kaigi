@@ -17,7 +17,6 @@ function subscribeForRetroGroups() {
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/sticky_added', function(data) {
-    console.log(data);
     var group = data.group;
     var sticky = data.sticky;
 
