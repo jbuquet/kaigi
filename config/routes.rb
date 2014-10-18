@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :retrospectives,only: [:new, :create, :show]
+  resources :retrospectives
 
   root :to => 'retrospectives#new'
 end

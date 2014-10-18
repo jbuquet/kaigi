@@ -8,13 +8,13 @@ class RetrospectivesController < ApplicationController
     retro = retro_params
     retro[:public_key] = SecureRandom.urlsafe_base64(nil, true)
 
-    Retrospective.create!(retro)
+    retro = Retrospective.create!(retro)
 
-    redirect_to :root
+    redirect_to retrospective_path(retro.public_key)
   end
 
   def show
-    @retro = Retrospective.find_by_public_key(params[:public_key])
+    @retro = Retrospective.find_by_public_key(params[:id])
   end
 
   private
