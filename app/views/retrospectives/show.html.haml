@@ -1,15 +1,16 @@
 - if !@user_in_retro
-  = form_tag(retrospective_users_path(:retrospective_id => 1), :method => :post) do
+  = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key),
+  :method => :post) do
     = label_tag('userName', 'Name')
     = text_field_tag('user[name]')
 
     %button= 'Save'
 
 - else
-  %p= "Retro ##{@retro.id}"
-  %p= "Name: #{@retro.name}"
-  %p= "Public_key: #{@retro.public_key}"
-  %p= "Link: #{retrospective_link(@retro)}"
+  %p= "Retro ##{current_retro.id}"
+  %p= "Name: #{current_retro.name}"
+  %p= "Public_key: #{current_retro.public_key}"
+  %p= "Link: #{retrospective_link(current_retro)}"
 
   %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
     %textarea#sticky_body{ name: 'sticky[body]'}

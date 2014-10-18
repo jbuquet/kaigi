@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :require_retro
 
   def current_retro
-    @current_retro ||= Retrospective.find_by_public_key(params[:id])
+    @current_retro ||= Retrospective.find_by_public_key(params[:retrospective_id] || params[:id])
   end
   helper_method :current_retro
 
