@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 //= require jquery-ui.min
 //= require jquery.textfill.min
-//= require jquery.zclip
+//= require ZeroClipboard
 //= require jquery.plugin
 //= require jquery.countdown
 //= require moment.min
