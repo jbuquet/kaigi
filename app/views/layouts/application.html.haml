@@ -70,7 +70,7 @@
             %ul#users.dropdown-menu.connected-users
               - current_retro.users.each do |user|
                 - if user != current_user
-                  %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};" }
+                  %li.user.user-initial{ data: { user: user.to_json }, style: "background-color: #{user.color};" }
                     = user_initial(user)
 
           .username.right-floated

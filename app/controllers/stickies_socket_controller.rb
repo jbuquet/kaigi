@@ -1,8 +1,10 @@
 class StickiesSocketController < FayeRails::Controller
 
   observe Sticky, :after_create do |sticky|
+    data = sticky.attributes
+    data[:user] = sticky.user.attributes
     StickiesSocketController.publish("/retrospectives/#{sticky.retrospective.id}/stickies/created",
-                                     sticky.attributes)
+                                     data)
   end
 
   observe Sticky, :after_destroy do |sticky|

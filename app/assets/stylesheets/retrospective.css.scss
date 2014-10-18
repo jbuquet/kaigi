@@ -82,6 +82,13 @@ body{
   }
 }
 
+.user-initial {
+  line-height: 20px;
+  width: 20px;
+  text-align: center;
+  font-weight: bolder;
+}
+
 .connected-users{
   right: 23px;
   left: auto;
@@ -89,12 +96,9 @@ body{
   border-radius: 0;
   box-shadow: none;
   margin-top: -10px;
+  padding: 7px;
+
   li{
-    float: left;
-    margin-left: 20px;
-    line-height: 20px;
-    width: 20px;
-    text-align: center;
     background-color: grey;
     margin-top: 5px;
     color: #ffffff;

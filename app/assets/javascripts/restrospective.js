@@ -38,6 +38,10 @@ function reloadStickies(){
 
 function createSticky($elem, sticky){
   var newSticky = $("<li>").addClass('sticky single idea').data({ sticky: sticky });
+  var initial = $('<span>').addClass('pull-left user-initial')
+                           .css('background-color', sticky.user.color)
+                           .text(userInitial(sticky.user));
+  newSticky.append(initial);
   newSticky.append($('<i>').addClass('fa fa-trash remove-sticky pull-right'));
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));

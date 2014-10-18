@@ -24,6 +24,8 @@
 
       - current_retro.ungrouped_stickies.each do |sticky|
         %li.sticky.idea.single{ 'data-sticky' => sticky.to_json }
+          %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
+            = user_initial(sticky.user)
           %i.fa.fa-trash.remove-sticky.pull-right
           %ul.sticky-container
           %p= sticky.body
