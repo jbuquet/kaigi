@@ -1,10 +1,15 @@
+function userInitial(user) {
+  return (user.name[0] || '').toUpperCase();
+}
+
 function subscribeForRetroUsers() {
   CLIENT.publish('/users/join', { user: USER });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/users/joined', function(user) {
-    var span = $('<span>').addClass('user label label-success')
-                          .html(user.id + ' ' + user.name[0])
-                          .data({ user: user });
+    var span = $('<li>').addClass('user')
+                        .css('background-color', user.color)
+                        .html(userInitial(user))
+                        .data({ user: user });
 
     var userExists = false;
     $('#users .user').each(function() {

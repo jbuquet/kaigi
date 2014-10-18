@@ -16,12 +16,6 @@
         #{sticky.id} #{sticky.body}
         %i.glyphicon.glyphicon-remove.remove-sticky
 
-  %h4 Users
-  #users
-    - current_retro.users.each do |user|
-      %span.user.label.label-success{ 'data-user' => user.to_json }
-        #{user.id} #{user.name[0]}
-
   %h4 Groups
   %form#new_group{ 'accept-charset'=> 'UTF-8' }
     %textarea#group_body{ name: 'group[name]'}
