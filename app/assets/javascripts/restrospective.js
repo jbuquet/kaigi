@@ -21,9 +21,9 @@ function reloadStickies(){
 
   $('.sticky').textfill({
     minFontPixels: 4,
-    maxFontPixels: 40,
+    maxFontPixels: 32,
     explicitWidth: 165,
-    explicitHeight: 165,
+    explicitHeight: 140,
     innerTag: 'p'
   });
 
