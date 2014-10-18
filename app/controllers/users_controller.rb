@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def create
-    user = User.create!(user_params.merge(:retrospective_id => current_retro.id))
+    user = User.create!(user_params)
 
     session[:user_id] = user.id
 
@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name).merge(retrospective_id: current_retro.id,
+                                              color: COLORS.sample)
   end
 
 end

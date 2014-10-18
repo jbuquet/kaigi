@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_retro
 
+  COLORS = %w[#f69988 #f36c60 #e84e40 #f06292 #ec407a #e91e63 #ba68c8 #ab47bc #6a1b9a #9575cd
+              #7986cb #5c6bc0 #3f51b5 #3949ab #29b6f6 #4fc3f7 #4dd0e1 #26c6da #42bd41 #2baf2b
+              #dce775 #d4e157 #fff176 #ffee58 #ffca28 #ffa726 #fb8c00]
+
   def current_retro
     @current_retro ||= Retrospective.find_by_public_key(params[:retrospective_id] || params[:id])
   end

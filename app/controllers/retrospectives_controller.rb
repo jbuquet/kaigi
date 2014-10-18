@@ -11,7 +11,7 @@ class RetrospectivesController < ApplicationController
 
     retrospective = Retrospective.create!(retrospective_data.merge(:public_key => SecureRandom.urlsafe_base64(nil, true)))
 
-    user = User.create!(:name => owner_name, :retrospective => retrospective)
+    user = retrospective.users.create!(:name => owner_name, color: COLORS.sample)
 
     session[:is_manager] = true
     session[:user_id] = user.id
