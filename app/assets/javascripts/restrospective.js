@@ -46,7 +46,7 @@ function createSticky($elem, sticky){
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));
 
-  $(newSticky).insertBefore($elem);
+  $(newSticky).insertAfter($elem);
   reloadStickies();
 }
 

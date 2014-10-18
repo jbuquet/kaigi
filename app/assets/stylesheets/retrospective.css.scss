@@ -223,20 +223,24 @@ body{
 }
 
 .sticky, .new-sticky {
-  width: 172px;
-  height: 165px;
+  margin: 15px;
+  width: 150px;
+  height: 150px;
   background-color: #23719F;
   overflow: hidden;
-
+  box-shadow: 4px 3px 10px #cccccc;
   p {
     font-size: 26px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 300;
     word-wrap: break-word;
   }
   ul {
     outline: 0;
   }
+}
+.remove-sticky{
+  cursor: pointer;
 }
 
 .good {
