@@ -1,8 +1,10 @@
 class GroupsSocketController < FayeRails::Controller
 
   observe Group, :after_create do |group|
+    data = group.attributes
+    data[:sticky_ids] = group.sticky_ids
     GroupsSocketController.publish("/retrospectives/#{group.retrospective.id}/groups/created",
-                                     group.attributes)
+                                   data)
   end
 
   observe Group, :after_destroy do |group|

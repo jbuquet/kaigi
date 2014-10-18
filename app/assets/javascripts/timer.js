@@ -11,8 +11,6 @@ function dateToUTC(date) {
 }
 
 $(function() {
-  console.log(moment().utc(RETRO.created_at));
-
   var liftoffTime = new Date(moment().utc(RETRO.created_at).format());
   $('#timer').countdown({ until: addMinutes(liftoffTime, 180), compact: true, description: '',
                           onExpiry: timerExpired });

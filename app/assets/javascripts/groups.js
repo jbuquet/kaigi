@@ -5,10 +5,11 @@ function subscribeForRetroGroups() {
     var $dropped;
     $('#stickies .sticky').each(function() {
       var $this = $(this);
+      var sticky = $this.data('sticky');
 
       if ($this.data('sticky').id == group.initial_sticky_id) {
         $droppable = $this;
-      } else if ($.inArray($this.data('sticky').id, group.sticky_ids)) {
+      } else if ($.inArray(sticky.id, group.sticky_ids) != -1) {
         $dropped = $this;
       }
     });
