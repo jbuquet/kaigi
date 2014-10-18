@@ -17,4 +17,7 @@
 //= require jquery-ui.min
 //= require jquery.textfill.min
 //= require jquery.zclip
+//= require jquery.plugin
+//= require jquery.countdown
+//= require moment.min
 //= require_tree .
