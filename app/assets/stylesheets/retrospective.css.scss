@@ -65,6 +65,9 @@ body{
       background-color: #F1F1F1;
       color: #686867;
     }
+    
+    width: 28px;
+    overflow: visible;
   }
   .username{
     color: #000000;
@@ -139,18 +142,39 @@ body{
 }
 
 .connected-users{
-  right: 23px;
-  left: auto;
-  width: 210px;
+  right: -30.5px !important;
   border-radius: 0;
   box-shadow: none;
   margin-top: -10px;
   padding: 7px;
 
+  width: 88px;
+  height: auto;
+
+  max-width: 200px;
+  min-width: 0;
+  min-height: 40px;
+
+  .clear-both {
+    clear: both;
+  }
+
   li{
     background-color: grey;
     margin-top: 5px;
     color: #ffffff;
+  }
+
+  .user {
+    float: left;
+    margin: 3px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    text-align: center;
+
+    font-weight: 300;
   }
 
   &:before{
@@ -159,11 +183,14 @@ body{
     position: absolute;
     width: 0;
     top: -10px;
-    left: 86px;
+    right: 38px;
     border: 5px solid transparent;
     border-bottom-color: #D8D8D8;
   }
+}
 
+.participants-dropdown-container {
+  position: relative;
 }
 
 #joinModal{

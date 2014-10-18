@@ -41,14 +41,15 @@
               %i.fa.fa-link
               Share
           .participants-count.right-floated
-            = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
-              +#{current_retro.users.size - 1}
+            .participants-dropdown-container
+              = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                +#{current_retro.users.size - 1}
 
-            %ul#users.dropdown-menu.connected-users
-              - current_retro.users.each do |user|
-                - if user != current_user
-                  %li.user.user-initial{ data: { user: user.to_json }, style: "background-color: #{user.color};" }
-                    = user_initial(user)
+              %ul#users.dropdown-menu.pull-right.connected-users
+                - current_retro.users.each do |user|
+                  - if user != current_user
+                    %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};" }
+                      = user_initial(user)
 
           .username.right-floated
             = current_user.try(:name)
