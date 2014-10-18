@@ -1,3 +1,7 @@
+GOOD_STICKY = 'good';
+IDEA_STICKY = 'idea';
+BAD_STICKY = 'bad';
+
 function reloadStickies(){
 
   $('.sticky').droppable({
@@ -42,6 +46,7 @@ function createSticky($elem, sticky){
   newSticky.addClass($elem.attr('class')).removeClass('new-sticky');
 
   $(newSticky).insertAfter($elem);
+  $elem.attr('class', 'new-sticky new');
   reloadStickies();
 }
 
@@ -69,6 +74,10 @@ function drawGroupSticky($elem, $item) {
   });
 }
 
+function hasTypeSelected(elem){
+  return elem.is('.good, .bad, .idea')
+}
+
 $( document ).ready(function() {
 
   reloadStickies();
@@ -89,11 +98,11 @@ $( document ).ready(function() {
         sticky_type: $(this).data('type')
       };
 
-      console.log('/stickies/create');
-      console.log(sticky);
 
-      $(this).find("textarea").val("");
-      CLIENT.publish('/stickies/create', { sticky: sticky });
+      if(hasTypeSelected($(this))){
+        $(this).find("textarea").val("");
+        CLIENT.publish('/stickies/create', { sticky: sticky });
+      }
       return false;
     }
   });
@@ -115,15 +124,18 @@ $( document ).ready(function() {
   });
 
   $('.good-type').on('click', function(event){
-    $('.new-sticky').attr('class', 'new-sticky').addClass('good').data('type', 'good');
+    $('.new-sticky').attr('class', 'new-sticky').addClass(GOOD_STICKY).data('type', GOOD_STICKY);
+    $('.sticky-text').focus();
   })
 
   $('.idea-type').on('click', function(event){
-    $('.new-sticky').attr('class', 'new-sticky').addClass('idea').data('type', 'idea');
+    $('.new-sticky').attr('class', 'new-sticky').addClass(IDEA_STICKY).data('type', IDEA_STICKY);
+    $('.sticky-text').focus();
   })
 
   $('.bad-type').on('click', function(event){
-    $('.new-sticky').attr('class', 'new-sticky').addClass('bad').data('type', 'bad');
+    $('.new-sticky').attr('class', 'new-sticky').addClass(BAD_STICKY).data('type', BAD_STICKY);
+    $('.sticky-text').focus();
   })
 
 });
