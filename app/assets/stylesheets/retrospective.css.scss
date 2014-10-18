@@ -170,6 +170,25 @@ body{
 
 .time-box{
   width: 100%;
+  margin-top: 8px;
+  &:before{
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    top: -16px;
+    left: 50%;
+    border: 8px solid transparent;
+    border-bottom-color: #ffffff;
+  }
+
+  .time-dots {
+    float: left;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    vertical-align: middle;
+  }
 
   li{
     font-size: 23px;
@@ -186,13 +205,15 @@ body{
         margin: 20px;
       }
       .end-btn {
-        background-color: #DF4B61 ;
+        background-color: #df4b61;
         color: #ffffff !important;
-        padding: 3px 10px;
+        border: none;
+        line-height: 37px;
+        height: 40px;
+        font-size: 16px;
+        width: 60px;
       }
-      .remove-time-btn{
 
-      }
     }
     &:last-child{
       border: none;
@@ -282,4 +303,24 @@ ul {
   &:focus {
     outline: 0;
   }
+}
+
+.set-btn{
+  background-color: #868787;
+  font-size: 14px;
+  border: none;
+  color: #ffffff !important;
+  width: 45px;
+  line-height: 25px;
+}
+
+#write_stickies_time_section{
+  .time-input{
+    width: 100%;
+    line-height: normal;
+  }
+}
+
+.radius2px{
+  border-radius: 2px;
 }
