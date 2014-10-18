@@ -12,12 +12,12 @@
           %ul.sticky-container
             - group.stickies.each do |sticky|
               - if sticky != initial_sticky
-                %li.grouped{ 'data-sticky' => sticky.to_json, class: 'bad' }
+                %li.grouped{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
                   %p= sticky.body
           %p= initial_sticky.body
 
       - current_retro.ungrouped_stickies.each do |sticky|
-        %li.sticky.single{ 'data-sticky' => sticky.to_json, class: 'bad' }
+        %li.sticky.single{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
           %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
             = user_initial(sticky.user)
           %i.fa.fa-trash.remove-sticky.pull-right

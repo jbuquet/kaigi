@@ -31,7 +31,6 @@ function reloadStickies(){
 }
 
 function createSticky($elem, sticky){
-  sticky.sticky_type = 'bad';
   var newSticky = $("<li>").addClass('sticky single').addClass(sticky.sticky_type).data({ sticky: sticky });
   var initial = $('<span>').addClass('pull-left user-initial')
                            .css('background-color', sticky.user.color)
@@ -43,6 +42,14 @@ function createSticky($elem, sticky){
 
   $(newSticky).insertAfter($elem);
   reloadStickies();
+}
+
+function getStickerType(){
+  $.each(['bad-sticky', 'good-sticky', 'idea-sticky'], function( index, value ) {
+    if($('.new-sticky').hasClass(value)){
+      return value;
+    }
+  });
 }
 
 function ungroupSticky($item) {
@@ -58,9 +65,8 @@ function drawGroupSticky($elem, $item) {
     $elem.find('.user-initial').remove();
   }
 
-  $item.removeClass('sticky');
-
   $item.fadeOut(function() {
+    $item.removeClass('sticky');
     $item.find('ul').remove();
     var $list = $elem.find('ul');
     $item.css({ width: '48px', height: '48px' }).removeClass('single').addClass('grouped');
@@ -86,8 +92,12 @@ $( document ).ready(function() {
       var sticky = {
         body: $(this).find("textarea").val(),
         retrospective_id: RETRO.id,
-        user_id: USER.id
+        user_id: USER.id,
+        sticky_type: $(this).attr('rel')
       };
+
+      console.log('/stickies/create');
+      console.log(sticky);
 
       $(this).find("textarea").val("");
       CLIENT.publish('/stickies/create', { sticky: sticky });

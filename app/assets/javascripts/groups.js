@@ -57,9 +57,10 @@ function groupSticky($droppable, $dropped) {
   var droppedIntoSticky = $droppable.data('sticky');
   var droppedSticky = $dropped.data('sticky');
 
+
   if (droppedIntoGroup) {
     CLIENT.publish('/groups/add_sticky', { id: droppedIntoGroup.id, sticky_id: droppedSticky.id });
-  } else {
+  } else if(!$droppable.hasClass('grouped')){
     var group = {
       retrospective_id: RETRO.id,
       initial_sticky_id: droppedIntoSticky.id,
@@ -91,6 +92,7 @@ $(function() {
     var $this = $(this);
 
     var group = $this.parents('.group').data('group');
+
     CLIENT.publish('/groups/delete', { id: group.id });
   });
 
