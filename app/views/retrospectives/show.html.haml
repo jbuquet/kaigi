@@ -44,9 +44,4 @@
         %i.glyphicon.glyphicon-remove.remove-group
 
 - else
-  = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key),
-  :method => :post) do
-    = label_tag('userName', 'Name')
-    = text_field_tag('user[name]')
-
-    %button= 'Save'
+  = render 'users/join_modal'

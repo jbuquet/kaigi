@@ -27,7 +27,7 @@
           10:20:20
         .col-md-4#retro-share
           .share-button.right-floated
-            = link_to  '#', 'data-toggle' => 'modal', 'data-target' => '#startModal' do
+            = link_to  '#', 'data-toggle' => 'modal', 'data-target' => '#shareModal' do
               %i.fa.fa-link
               Share
 
@@ -44,27 +44,6 @@
           .username.right-floated
             = current_user.try(:name)
 
-    .modal.fade#startModal
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %h4.modal-title
-              Please enter your name to start
-          .modal-body
-            = form_tag(retrospectives_path, method: 'post') do
-              = text_field_tag 'retrospective[owner_name]', '', placeholder: 'Your name', class: 'retro-input', autocomplete: 'off'
-              = submit_tag 'Start'
-    .modal.fade#shareModal
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %h4.modal-title
-              Invite members
-          .modal-body
-            .share-link
-              %span
-                http://localhost:3000/retrospectives/q4KZjuyHhRgAPa8iFvllYQ==#
-
-            = link_to 'Copy', ''
-
     = yield
+
+= render 'retrospectives/share_link_modal'
