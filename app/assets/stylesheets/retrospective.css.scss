@@ -12,6 +12,7 @@ body{
 .navbar{
   padding: 0;
   height: 60px;
+  margin-bottom: 0;
 }
 
 .header-container{
@@ -55,7 +56,7 @@ body{
   }
   .right-floated{
     float:right;
-    margin-left: 20px;
+    margin-right: 20px;
   }
   .participants-count{
     a{
@@ -72,13 +73,60 @@ body{
     a{
       background-color: #EE9B22;
       padding: 6px 15px;
-      margin-right: 10px;
       color: #ffffff;
       border-radius: 3px;
       font-size: 11px;
       border: 1px solid #EE8116;
     }
 
+  }
+}
+
+#settings-btn {
+  i {
+    width: 14px;
+  }
+}
+
+.settings-container {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  right: 0;
+  background-color: rgba(221, 221, 221, 0.9);
+  display: none;
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+
+    padding: 0 15px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .settings-title {
+    font-size: 30px;
+    font-weight: 300;
+    margin: 20px 0;
+  }
+
+  .settings-group-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 6px;
+  }
+
+  .settings-item {
+    margin: 5px 0;
+  }
+
+  .settings-item-title {
+    font-size: 18px;
+    font-weight: 100;
   }
 }
 
@@ -200,6 +248,7 @@ body{
     text-align: center;
     line-height: 60px;
     vertical-align: middle;
+    width: 20px;
   }
 
   li{

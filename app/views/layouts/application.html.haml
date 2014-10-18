@@ -34,11 +34,14 @@
             = render 'retrospectives/set_status_dropdown'
 
         .col-md-4#retro-share
+          .settings-button.right-floated.participants-count
+            = link_to '#', id: 'settings-btn' do
+              %span
+                %i.fa.fa-cog
           .share-button.right-floated
             = link_to  '#', 'data-toggle' => 'modal', 'data-target' => '#shareModal' do
               %i.fa.fa-link
               Share
-
           .participants-count.right-floated
             = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
               +#{current_retro.users.size - 1}
@@ -53,5 +56,7 @@
             = current_user.try(:name)
 
     = yield
+
+    = render 'retrospectives/settings'
 
 = render 'retrospectives/share_link_modal'

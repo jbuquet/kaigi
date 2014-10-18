@@ -105,6 +105,20 @@ $( document ).ready(function() {
     }
   });
 
-  $('.new-sticky').tooltip()
+  $('.new-sticky').tooltip();
+
+  $('#settings-btn').bind('click', function(e) {
+    $('.settings-container').toggle();
+
+    var $settings_btn = $('#settings-btn').find('i');
+
+    if ($settings_btn.hasClass('fa-cog')) {
+      $settings_btn.removeClass('fa-cog');
+      $settings_btn.addClass('fa-close');
+    } else if ($settings_btn.hasClass('fa-close')) {
+      $settings_btn.removeClass('fa-close');
+      $settings_btn.addClass('fa-cog');
+    }
+  });
 
 });
