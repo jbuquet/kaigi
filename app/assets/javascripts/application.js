@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.serialize-object.min
 //= require bootstrap-sprockets
+//= require jquery-ui.min
+//= require jquery.textfill.min
 //= require_tree .
