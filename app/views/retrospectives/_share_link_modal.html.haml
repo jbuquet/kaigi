@@ -6,7 +6,6 @@
           Invite members
       .modal-body
         .share-link
-          %span
-            http://localhost:3000/retrospectives/q4KZjuyHhRgAPa8iFvllYQ==#
+          %span= retrospective_url(current_retro.public_key)
 
-        = link_to 'Copy', ''
+        = link_to 'Copy', '#', class: 'copy'

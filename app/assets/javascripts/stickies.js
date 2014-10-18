@@ -14,7 +14,6 @@ function subscribeForRetroStickies() {
 }
 
 $(function() {
-
   if (RETRO) {
     subscribeForRetroStickies();
   }
@@ -38,5 +37,4 @@ $(function() {
     var sticky = $this.parents('.sticky').data('sticky');
     CLIENT.publish('/stickies/delete', { id: sticky.id });
   });
-
 });

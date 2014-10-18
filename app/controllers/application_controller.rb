@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_retro
 
   def current_user_id
-    session[:user_id]
+    session_retro_users[current_retro.id.to_s]
   end
   helper_method :current_user_id
 
@@ -21,6 +21,18 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(current_user_id)
   end
   helper_method :current_user
+
+  def add_user_to_current_retro(user_id)
+    add_user_to_retro(current_retro, user_id)
+  end
+
+  def add_user_to_retro(retro, user_id)
+    session_retro_users[retro.id] = user_id
+  end
+
+  def session_retro_users
+    session[:retro_users] ||= {}
+  end
 
   def require_retro
     return if controller_name == 'retrospectives' && (action_name == 'new' || action_name == 'create')

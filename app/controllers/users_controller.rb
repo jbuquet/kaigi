@@ -2,8 +2,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
-
-    session[:user_id] = user.id
+    add_user_to_current_retro(user.id)
 
     redirect_to retrospective_path(current_retro.public_key)
   end

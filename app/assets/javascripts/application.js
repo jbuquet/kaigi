@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require jquery-ui.min
 //= require jquery.textfill.min
+//= require jquery.zclip
 //= require_tree .
