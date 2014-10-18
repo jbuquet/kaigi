@@ -53,10 +53,10 @@
 
           .username.right-floated
             = current_user.try(:name)
+    = render 'retrospectives/settings'
 
     = yield
 
-    = render 'retrospectives/settings'
 
 = render 'retrospectives/share_link_modal'
 = render 'retrospectives/set_status_modal'
