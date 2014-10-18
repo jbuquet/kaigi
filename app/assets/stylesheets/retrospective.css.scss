@@ -65,7 +65,7 @@ body{
       background-color: #F1F1F1;
       color: #686867;
     }
-    
+
     width: 28px;
     overflow: visible;
   }
@@ -329,9 +329,12 @@ body{
 
   ul {
     outline: 0;
+    margin-top: -2px;
+
     .sticky-min {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
+      margin: 2px 2px 4px 2px
     }
   }
 }
@@ -440,16 +443,15 @@ ul {
 }
 
 .sticky-types {
-  width: 100%;
+  width: 150px;
   height: 30px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
   overflow: hidden;
+  margin-left: -6px;
+  margin-top: 5px;
 
   .sticky-type {
     float: left;
-    width: 46px;
+    width: 50px;
     height: 100%;
     cursor: pointer;
 
