@@ -145,26 +145,38 @@ body{
   .modal-header{
     color: #686867;
   }
+  .modal-body{
+
+  }
   .modal-content{
     border-radius: 0;
     padding: 20px;
   }
   .share-link{
+    float: left;
+    width: calc(100% - 75px);
+    overflow: hidden;
     border: 1px solid #D8D8D8;
     padding: 10px;
     background-color: #F1F1F1;
+    span::selection {
+      background: #EE9B22; /* WebKit/Blink Browsers */
+    }
+    span::-moz-selection {
+      background: #EE9B22; /* Gecko Browsers */
+    }
   }
   a{
+    float: left;
+    height: 42px;
+    width: 75px;
+    line-height: 42px;
     display: block;
     background-color: #EE9B22;
-    width: 100px;
     text-align: center;
     border: none;
     color: #ffffff;
-    height: 50px;
-    line-height: 50px;
-    margin-left: 400px;
-    margin-top: 20px;
+
   }
 }
 
