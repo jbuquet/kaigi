@@ -3,7 +3,7 @@ $(function() {
     e.stopPropagation();
   });
 
-  $('#start_end_current_time').prop('disabled', true);
+  $('#start_end_current_time').prop('disabled', true).addClass('disabled');
 
   $('#set_time_next_phase').click(function(e) {
     e.preventDefault();
@@ -19,8 +19,25 @@ $(function() {
   });
 
   CLIENT.subscribe('/statuses/to_start_next_phase', function() {
-    // TODO: close modal
-
     $('#start_end_current_time').prop('disabled', false);
+  });
+
+  $('#start_end_current_time').click(function(e){
+    e.preventDefault();
+
+    var currentStatus = $('#start_end_current_time').val();
+
+    if (currentStatus == 'Start')
+      CLIENT.publish('/statuses/start_current_phase', {});
+    else
+      CLIENT.publish('/statuses/end_current_phase', {});
+  });
+
+  CLIENT.subscribe('/statuses/started_current_phase', function() {
+
+    $('#start_end_current_time').val('End');
+    $('#set_timebox_section input').each(function() {
+      $(this).prop('disabled', true).addClass('disabled');
+    });
   });
 });

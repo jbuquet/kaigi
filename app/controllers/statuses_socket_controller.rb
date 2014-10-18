@@ -4,11 +4,13 @@ class StatusesSocketController < FayeRails::Controller
     monitor :publish do
       Status.set_status(data['status'])
 
-      begin
       StatusesSocketController.publish('/statuses/to_start_next_phase', nil)
-      rescue Exception => e
-        p e
-      end
+    end
+  end
+
+  channel '/statuses/start_current_phase' do
+    monitor :publish do
+      StatusesSocketController.publish('/statuses/started_current_phase', nil)
     end
   end
 end
