@@ -28,7 +28,8 @@ class Status < ActiveRecord::Base
                      })
     end
 
-    status.update_attribute(:start_time, Time.now)
+
+    new_status.update_attribute(:start_time, Time.now)
     retrospective.update_attribute(:current_status_id, new_status.id)
   end
 
@@ -37,7 +38,7 @@ class Status < ActiveRecord::Base
 
     status = Status.find(retrospective.current_status_id)
 
-    status.update_attribute(:duration, 100)
+    status.update_attribute(:duration, Time.now.to_i - status.start_time.to_i)
     retrospective.update_attribute(:current_status_id, nil)
   end
 end

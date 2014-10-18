@@ -1,5 +1,5 @@
 function timerExpired() {
- console.log('Activity time has expired')
+  CLIENT.publish('/statuses/end_current_phase', { retrospective_id: RETRO.id });
 }
 
 function addMinutes(date, minutes) {

@@ -26,14 +26,10 @@
           Kaigi retrospective
         .col-md-4#retro-time
 
-          = link_to '--:--:--', '#', id: 'timer', class: 'dropdown-toggle',
-                                                  data: { toggle: :dropdown }
+          = link_to '--:--:--', '#', id: 'timer'
 
           - if current_retro.current_status_id
             %input#end_current_time{ type: :submit, value: 'End', class: 'end-btn radius2px' }
-
-          %ul.dropdown-menu.time-box
-            = render 'retrospectives/set_status_dropdown'
 
         .col-md-4#retro-share
           .settings-button.right-floated.participants-count
@@ -62,3 +58,4 @@
     = render 'retrospectives/settings'
 
 = render 'retrospectives/share_link_modal'
+= render 'retrospectives/set_status_modal'
