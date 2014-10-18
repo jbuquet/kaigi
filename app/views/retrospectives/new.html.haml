@@ -1,9 +1,30 @@
-= form_tag(retrospectives_path, :method => :post) do
-  = label_tag('retrospectiveName', 'Name')
-  = text_field_tag('retrospective[name]')
+%body#page-top
+  / Navigation
+  %nav.navbar.navbar-custom.navbar-fixed-top{:role => "navigation"}
+    .container
+      .navbar-header
+        %a.navbar-brand
+          = image_tag('logo.png')
 
-  %button= 'Save'
+  %header.intro
+    .intro-body
+      .container
+        .row
+          .col-md-10.col-md-offset-1
+            %h1.brand-heading Remotes retrospective
+            %p.brand-sub-heading was never so sexy
+        .row.form-container
+          .col-md-10.col-md-offset-1
+            = form_tag(retrospectives_path, method: 'post') do
+              .row.position-relative
+                .col-md-8.col-md-offset-2
+                  .row
+                    .col-md-6{style: 'padding-right: 0'}
+                      = text_field_tag 'retrospective[owner_name]', '', placeholder: 'Your name', class: 'retro-input'
 
-%h4= 'Retros:'
-- @retros.each do |retro|
-  %p= retro.public_key
+                    .col-md-6{style: 'padding-left: 0'}
+                      = text_field_tag 'retrospective[name]', '', placeholder: 'Retrospective name', class: 'retro-input'
+                    .vertical-separator
+              .row
+                .col-md-8.col-md-offset-2
+                  = submit_tag 'Start now', class: 'start-retro'

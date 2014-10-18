@@ -69,6 +69,8 @@ GEM
     faye-websocket (0.7.5)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.5)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -153,6 +155,7 @@ DEPENDENCIES
   dotenv-rails
   faye-rails
   faye-redis
+  font-awesome-rails
   haml
   jquery-rails
   mysql2

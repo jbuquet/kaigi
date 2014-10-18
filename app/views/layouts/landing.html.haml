@@ -7,9 +7,7 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100italic,900,300italic,700italic,500italic,400italic,900italic,100", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = javascript_include_tag '/socket/client.js'
-
     = csrf_meta_tags
 
-  %body
-    = yield
+%body
+  = yield
