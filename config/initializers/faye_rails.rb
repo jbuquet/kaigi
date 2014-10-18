@@ -1,4 +1,4 @@
-redis_uri = URI.parse(ENV["REDISCLOUD_URL"])
+redis_uri = URI.parse(ENV["REDISGREEN_URL"])
 
 Rails.application.config.middleware.delete Rack::Lock
 Rails.application.config.middleware.use FayeRails::Middleware, mount: '/socket', :timeout => 25,
