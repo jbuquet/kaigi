@@ -1,11 +1,24 @@
-%form#new_sticky{ 'accept-charset'=> 'UTF-8' }
-  %textarea#sticky_body{ name: 'sticky[body]'}
+- if !@user_in_retro
+  = form_tag(retrospective_users_path(:retrospective_id => 1), :method => :post) do
+    = label_tag('userName', 'Name')
+    = text_field_tag('user[name]')
 
-  .actions
-    %input{ type: :submit, value: 'Create Sticky' }
+    %button= 'Save'
 
-#stickies
-  - Sticky.all.each do |sticky|
-    %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
-      #{sticky.id} #{sticky.body}
-      %i.glyphicon.glyphicon-remove.remove-sticky
+- else
+  %p= "Retro ##{@retro.id}"
+  %p= "Name: #{@retro.name}"
+  %p= "Public_key: #{@retro.public_key}"
+  %p= "Link: #{retrospective_link(@retro)}"
+
+  %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
+    %textarea#sticky_body{ name: 'sticky[body]'}
+
+    .actions
+      %input{ type: :submit, value: 'Create Sticky' }
+
+  #stickies
+    - Sticky.all.each do |sticky|
+      %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
+        #{sticky.id} #{sticky.body}
+        %i.glyphicon.glyphicon-remove.remove-sticky
