@@ -11,5 +11,5 @@
 
     = csrf_meta_tags
 
-  %body
+  %body{ data: { retro: current_retro.to_json } }
     = yield
