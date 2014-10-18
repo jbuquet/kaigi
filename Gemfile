@@ -14,5 +14,5 @@ gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'faye-rails'
 gem 'faye-redis'
-gem 'dotenv'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'quiet_assets', group: :development
