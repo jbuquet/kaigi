@@ -1,7 +1,7 @@
 class RetrospectivesController < ApplicationController
 
   def new
-    @retros = Retrospective.all
+
   end
 
   def create
@@ -10,16 +10,16 @@ class RetrospectivesController < ApplicationController
 
     retrospective = Retrospective.create!(retrospective_data.merge(:public_key => SecureRandom.urlsafe_base64(nil, true)))
 
-    User.create!(:name => owner_name, :retrospective => retrospective)
+    user = User.create!(:name => owner_name, :retrospective => retrospective)
 
     session[:is_manager] = true
-    session[:user_in_retro] = true
+    session[:user_id] = user.id
 
     redirect_to retrospective_path(retrospective.public_key)
   end
 
   def show
-    @user_in_retro = session[:user_in_retro]
+    session[:user_id]
   end
 
   private

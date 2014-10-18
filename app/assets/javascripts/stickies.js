@@ -21,6 +21,7 @@ function subscribeForRetroStickies() {
 }
 
 $(function() {
+
   if (RETRO) {
     subscribeForRetroStickies();
   }
@@ -31,6 +32,7 @@ $(function() {
     var $this = $(this);
     var sticky = $this.serializeObject().sticky;
     sticky.retrospective_id = RETRO.id;
+    sticky.user_id = USER.id;
 
     CLIENT.publish('/stickies/create', { sticky: sticky });
 

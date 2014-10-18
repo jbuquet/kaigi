@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
 
   def create
-    p 'lalalla'
-    User.create!(user_params.merge(:retrospective_id => current_retro.id))
+    user = User.create!(user_params.merge(:retrospective_id => current_retro.id))
 
-    session[:user_in_retro] = true
+    session[:user_id] = user.id
 
     redirect_to retrospective_path(current_retro.public_key)
   end
@@ -14,4 +13,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name)
   end
+
 end

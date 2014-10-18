@@ -11,5 +11,7 @@
 
     = csrf_meta_tags
 
-  %body{ data: { retro: current_retro.to_json } }
+  %body{ data: { retro: current_retro.to_json, user: current_user.try(:to_json) } }
+    %h2 User: #{current_user.try(:name)}
+
     = yield

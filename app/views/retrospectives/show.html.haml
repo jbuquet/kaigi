@@ -1,15 +1,5 @@
-- if !@user_in_retro
-  = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key),
-  :method => :post) do
-    = label_tag('userName', 'Name')
-    = text_field_tag('user[name]')
-
-    %button= 'Save'
-
-- else
-  %p= "Retro ##{current_retro.id}"
+- if current_user
   %p= "Name: #{current_retro.name}"
-  %p= "Public_key: #{current_retro.public_key}"
   %p= "Link: #{retrospective_link(current_retro)}"
 
   %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
@@ -23,3 +13,11 @@
       %span.sticky.label.label-primary{ 'data-sticky' => sticky.to_json }
         #{sticky.id} #{sticky.body}
         %i.glyphicon.glyphicon-remove.remove-sticky
+
+- else
+  = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key),
+  :method => :post) do
+    = label_tag('userName', 'Name')
+    = text_field_tag('user[name]')
+
+    %button= 'Save'
