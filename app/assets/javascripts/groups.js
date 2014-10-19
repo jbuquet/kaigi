@@ -4,7 +4,7 @@ function subscribeForRetroGroups() {
     // For now we are assuming that a group is created with 2 stickies.
     var $droppable;
     var $dropped;
-    $('#stickies .sticky').each(function() {
+    $('#stickies .sticky').not('.group-color').each(function() {
       var $this = $(this);
       var sticky = $this.data('sticky');
 
@@ -26,13 +26,12 @@ function subscribeForRetroGroups() {
     var $droppable;
     var $dropped;
     $('#stickies .sticky').each(function() {
-      var $this = $(this);
-      if($this.data('group') !== undefined){
-        if ($this.data('group').initial_sticky_id == group.initial_sticky_id) {
-          $droppable = $this;
-        }
-      } else if ($this.data('sticky').id == sticky.id) {
-        $dropped = $this;
+      console.log($(this))
+      if($(this).data('sticky') && $(this).data('sticky').id == sticky.id) {
+        $dropped = $(this)
+      }
+      if($(this).data('group') && $(this).data('group').id == group.id) {
+        $droppable = $(this)
       }
     });
 
@@ -47,7 +46,7 @@ function subscribeForRetroGroups() {
       var $this = $(this);
 
       if ($this.data('sticky').id == sticky.id) {
-        drawUngroupSticky($this)
+        drawUngroupSticky($this);
       }
     });
   });
@@ -65,7 +64,7 @@ function subscribeForRetroGroups() {
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/deleted', function(group) {
-    $('#groups .group').each(function() {
+    $('.group').each(function() {
       var $this = $(this);
       if ($this.data('group').id == group.id) {
         $this.remove();

@@ -32,7 +32,7 @@ function reloadStickies(){
     innerTag: 'p'
   });
 
-  $('.grouped').addClass('sticky-min')
+  $('.grouped').addClass('sticky-min').removeClass('sticky-max')
 }
 
 function createSticky($elem, sticky){
@@ -52,47 +52,66 @@ function createSticky($elem, sticky){
 
 function ungroupSticky($item) {
   var sticky = $item.data('sticky');
-
   CLIENT.publish('/groups/remove_sticky', { sticky_id: sticky.id });
 }
 
 function drawUngroupSticky($item) {
   $item.fadeOut(function() {
-    $item.insertAfter($('.sticky:last')).fadeIn( function(){
-      $item.removeClass('sticky-min grouped').addClass('sticky-max single sticky');
-      $item.find('.remove-sticky').show();
-      $item.find('.user-initial').show();
-    })
+    var groupElem = $item.parent();
+    $item.insertAfter($('.sticky:last'));
+    $item.removeClass('sticky-min grouped').addClass('sticky-max single sticky');
+    $item.find('.remove-sticky').show();
+    $item.find('.user-initial').show();
+    $item.show();
+
+    if(groupElem.children().length == 0) {
+      CLIENT.publish('/groups/delete', { id: groupElem.parent().data('group').id });
+    }
+
+    reloadStickies();
   })
 }
 
 function drawGroupSticky($elem, $item) {
-  if(!$elem.hasClass('grouped')) {
-    $elem.addClass('group-color').removeClass('single');
-    $elem.find('.remove-sticky').hide();
-    $elem.find('.user-initial').hide();
+  console.log($item);
+  var $list = $elem.find('ul');
+  if($elem.hasClass('single')) {
+    $groupElem = $("<li>").addClass('sticky group group-color')
+      .append($("<ul>").addClass('sticky-container'));
+
+    $groupElem.insertAfter($item);
+
+    $groupElem.data('group', $elem.data('group'));
+
+    reloadStickies();
+
+    $elem.fadeOut(function() {
+      $elem.removeClass('sticky');
+      $elem.find('ul').remove();
+      $list = $groupElem.find('ul');
+      $elem.addClass('sticky-min').removeClass('single sticky-max').addClass('grouped');
+
+      $elem.find('.remove-sticky').hide();
+      $elem.find('.user-initial').hide();
+      $elem.appendTo( $list ).fadeIn();
+    });
+
   }
 
-  if(!$elem.hasClass('group')) {
-    $elem.addClass('group');
-
-    if (CURRENT_STATUS.status_type == 'vote_groups') {
-      var group = $elem.data('group');
-      var votesCount = $('<span>').addClass('badge pull-left');
-      votesCount.append('Votes:');
-      votesCount.append($('<span>').addClass('vote-count').html(group.votes));
-      $elem.prepend(votesCount);
-    }
-
+  if (CURRENT_STATUS.status_type == 'vote_groups') {
+    var group = $elem.data('group');
+    var votesCount = $('<span>').addClass('badge pull-left');
+    votesCount.append('Votes:');
+    votesCount.append($('<span>').addClass('vote-count').html(group.votes));
+    $elem.prepend(votesCount);
     var addVote = $('<span>').addClass('badge vote-group pull-right').html('+1');
     $elem.prepend(addVote);
-  }
+  };
 
   $item.fadeOut(function() {
     $item.removeClass('sticky');
     $item.find('ul').remove();
-    var $list = $elem.find('ul');
-    $item.addClass('sticky-min').removeClass('single').addClass('grouped');
+    $item.addClass('sticky-min').removeClass('single sticky-max').addClass('grouped');
 
     $item.find('.remove-sticky').hide();
     $item.find('.user-initial').hide();
