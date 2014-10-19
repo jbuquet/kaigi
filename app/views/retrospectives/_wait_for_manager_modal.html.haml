@@ -11,6 +11,14 @@
             We are waiting for you colleagues to join.
             Your retrospective is about to begin...
 
+
+          Connected colleagues:
+          %ul#users-home
+            - current_retro.users.each do |user|
+              - if user != current_user
+                %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};", title: user.name }
+                  = user_initial(user)
+
         - elsif current_retro.current_status.status_type == Status::SET_VOTE_GROUPS_TIMEBOX
           %p
             While we wait for the moderator to start the next stage here is some useful info.

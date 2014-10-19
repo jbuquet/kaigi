@@ -17,11 +17,12 @@ function subscribeForRetroUsers() {
     var userExists = false;
     $('#users .user').each(function() {
       var $this = $(this);
-      userExists = $this.data('user').id == user.id;
+      userExists = userExists || $this.data('user').id == user.id;
     });
 
     if (!userExists) {
       $('#users').removeClass('hide').append(span);
+      $('#users-home').append(span);
       $('.dropdown-toggle').text('+' + usersCount);
     }
   });

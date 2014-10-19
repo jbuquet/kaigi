@@ -31,13 +31,14 @@ $(function() {
   $('form#new_action_item').submit(function(e) {
     e.preventDefault();
     var $this = $(this);
-
     var actionItem = $this.serializeObject().action_item;
-    actionItem.retrospective_id = RETRO.id;
 
-    CLIENT.publish('/action_items/create', { action_item: actionItem });
+    if (!$.isEmptyObject(actionItem.action)) {
+      actionItem.retrospective_id = RETRO.id;
+      CLIENT.publish('/action_items/create', { action_item: actionItem });
 
-    $('input[type=text]').val('');
+      $('input[type=text]').val('');
+    }
   });
 
   $('#action-items').on('click', '.action-item .remove-action-item', function() {

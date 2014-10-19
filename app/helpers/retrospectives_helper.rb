@@ -8,6 +8,13 @@ module RetrospectivesHelper
     end
   end
 
+  def inviting?
+    return false unless current_retro
+    return false unless current_retro.current_status
+
+    current_retro.current_status.status_type == Status::INVITE_USERS
+  end
+
   def voting?
     return false unless current_retro
     return false unless current_user

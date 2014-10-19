@@ -6,7 +6,7 @@
           = "Next stage: #{next_status_name}"
 
       .modal-body.clearfix
-        - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
+        - if inviting?
           %span.invite-team-members
             You can invite team members using this link:
           .share-link
@@ -15,8 +15,6 @@
           = link_to 'Copy', '#', class: 'copy'
 
           %hr.time-box-separator
-
-
 
         %ul.time-box
           %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
@@ -44,5 +42,16 @@
                 .col-md-4
                   %span.current-timebox
                     %input#start_current_time.radius2px{ type: :submit, value: 'START' }
+
+
+        - if inviting?
+          Connected colleagues:
+          %ul#users-home
+            - current_retro.users.each do |user|
+              - if user != current_user
+                %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};", title: user.name }
+                  = user_initial(user)
+
+          .clearfix
 
 .modal-backdrop.fade.in
