@@ -25,3 +25,6 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'quiet_assets', group: :development
 
 gem "font-awesome-rails"
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

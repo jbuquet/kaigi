@@ -4,7 +4,8 @@
     %span{ style: "color: #{current_retro.manager.color}" }
       #{current_retro.manager.name}
 
-    %br
+    = link_to retrospective_summary_path(current_retro.public_key, format: :pdf), class: 'pull-right' do
+      .fa.fa-download
 
   %h3
     Participants:
@@ -15,6 +16,6 @@
 
   .clearfix
 
-  = render 'statuses/list'
+  = render 'statuses/list.html'
 
-  = render 'groups/list'
+  = render 'groups/list.html'

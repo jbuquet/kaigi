@@ -1,7 +1,6 @@
 class RetrospectivesController < ApplicationController
 
   def new
-    @retros = Retrospective.all
     render layout: 'landing'
   end
 
@@ -31,6 +30,14 @@ class RetrospectivesController < ApplicationController
 
   def show
 
+  end
+
+  def summary
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "kaigi_#{current_retro.public_key}"
+      end
+    end
   end
 
   private
