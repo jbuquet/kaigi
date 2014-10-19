@@ -37,6 +37,16 @@ body{
   font-weight: 400;
   font-style: italic;
   border-right: 1px solid #F1F1F1;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .header-current-status-name {
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+  }
 }
 
 #retro-time {
@@ -85,7 +95,7 @@ body{
 
   }
 
-  .remaining-points {
+  .remaining-votes {
     width: 113px;
     color: #000000;
     font-size: 13px;

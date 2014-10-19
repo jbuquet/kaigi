@@ -26,16 +26,18 @@
           #logo-container
             = link_to image_tag('kaigi-icon.png'), '/'
 
-        .col-md-3#retro-name
-          %span= "#{current_retro.name}: #{current_status_name}"
+        .col-md-4#retro-name
+          %span= "#{current_retro.name}"
+          %span.header-current-status-name= " | #{current_status_name}"
 
-        .col-md-4#retro-time
+        .col-md-2#retro-time
 
           = link_to '--:--:--', '#', id: 'timer'
 
           - if !set_timebox_in_current_status && !finished? && current_user_is_manager?
             %input#end_current_time.end-btn.radius2px{ type: :submit, value: next_stage_button_name }
 
+        .col-md-1#retro-time
           - if finished?
             %a.end-btn.radius2px{ href: '/' } Start over!
 
@@ -62,10 +64,12 @@
             = current_user.try(:name)
 
           - if voting?
-            .remaining-points.right-floated
+            .remaining-votes.right-floated
               Remaining votes
               %strong#user-remaining-votes
                 = current_user.remaining_votes
+
+    .clearfix
 
     = yield
 
