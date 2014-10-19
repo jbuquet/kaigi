@@ -40,10 +40,6 @@
             %a.end-btn.radius2px{ href: '/' } Start over!
 
         .col-md-4#retro-share
-          -#.settings-button.right-floated.participants-count
-          -#  = link_to '#', id: 'settings-btn' do
-          -#    %span
-          -#      %i.fa.fa-cog
           .share-button.right-floated
             = link_to  '#', 'data-toggle' => 'modal', 'data-keyboard' => 'true', 'data-target' => '#shareModal' do
               %i.fa.fa-link
@@ -70,8 +66,6 @@
               Remaining votes
               %strong#user-remaining-votes
                 = current_user.remaining_votes
-
-    -#= render 'retrospectives/settings'
 
     = yield
 

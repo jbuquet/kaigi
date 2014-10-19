@@ -63,7 +63,13 @@ function subscribeForRetroGroups() {
     });
 
     if (user.id == USER.id) {
-      $('#user-remaining-votes').html(user.remaining_votes)
+      $('#user-remaining-votes').html(user.remaining_votes);
+
+      if (user.remaining_votes == 0) {
+        $('.vote-group').each(function() {
+          $(this).remove();
+        })
+      }
     }
   });
 
@@ -131,5 +137,4 @@ $(function() {
 
     CLIENT.publish('/groups/vote', { id: group.id, user_id: USER.id });
   });
-
 });
