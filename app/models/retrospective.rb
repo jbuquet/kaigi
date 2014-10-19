@@ -20,4 +20,12 @@ class Retrospective < ActiveRecord::Base
     retrospective.update_attribute(:max_votes, votes_data['max_votes'])
   end
 
+  def manager
+    users.first
+  end
+
+  def participants
+    users.offset(1)
+  end
+
 end

@@ -1,6 +1,6 @@
 - current_retro.groups.order_by_votes.each do |group|
   %li.sticky.group.group-color{ data: { group: group.to_json } }
-    - if voting? || discussing?
+    - if voting? || discussing? || finished?
       %span.badge.pull-left
         Votes:
         %span.vote-count= group.votes

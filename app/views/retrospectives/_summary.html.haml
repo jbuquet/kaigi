@@ -1,0 +1,20 @@
+#summary.container
+  %h3
+    Manager:
+    %span{ style: "color: #{current_retro.manager.color}" }
+      #{current_retro.manager.name}
+
+    %br
+
+  %h3
+    Participants:
+
+    - current_retro.participants.each do |participant|
+      %span{ style: "color: #{participant.color}" }
+        #{participant.name}
+
+  .clearfix
+
+  = render 'statuses/list'
+
+  = render 'groups/list'

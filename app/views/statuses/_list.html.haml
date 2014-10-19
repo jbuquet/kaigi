@@ -1,0 +1,14 @@
+- current_retro.statuses.each do |status|
+  - if status_show_in_summary?(status)
+    .panel.panel-default.col-md-6
+      .panel-heading
+        %h3.panel-title= status_name(status)
+
+      .panel-body
+        Start time: #{l(status.start_time)}
+        %br
+        Expected Duration:
+        = status_estimated_duration(status)
+
+        %br
+        Duration: #{seconds_to_string(status.duration)}

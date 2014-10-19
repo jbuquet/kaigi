@@ -60,7 +60,9 @@ function subscribeForRetroGroups() {
       }
     });
 
-    $('#user-remaining-votes').html(user.remaining_votes)
+    if (user.id == USER.id) {
+      $('#user-remaining-votes').html(user.remaining_votes)
+    }
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/deleted', function(group) {
