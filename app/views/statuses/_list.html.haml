@@ -12,3 +12,12 @@
 
         %br
         Duration: #{seconds_to_string(status.duration)}
+
+.panel.panel-default.col-md-6
+  .panel-heading
+    %h3.panel-title Stickies discussed:
+  .panel-body
+    - current_retro.stickies.each do |sticky|
+      #{sticky.body} - #{sticky.user.name}
+
+      %br
