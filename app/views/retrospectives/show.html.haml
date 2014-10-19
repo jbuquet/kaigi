@@ -9,7 +9,7 @@
 
   - unless defining_action_items?
     .container-stickies
-      - if grouping?
+      - if grouping? && current_user_is_manager?
         %div.alert.alert-info{ role: 'alert' }
           %button.close{ type: 'button', data: { dismiss: 'alert', name: 'create-groups' } }
             %span{ 'aria-hidden' => 'true' } &times;
