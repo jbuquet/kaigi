@@ -79,6 +79,7 @@ function drawGroupSticky($elem, $item) {
   var $list = $elem.find('ul');
   if($elem.hasClass('single')) {
     $groupElem = $("<li>").addClass('sticky group group-color')
+      .append($("<span>").text($elem.data('group').name))
       .append($("<ul>").addClass('sticky-container'));
 
     $groupElem.insertAfter($item);

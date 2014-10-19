@@ -28,4 +28,16 @@ class Retrospective < ActiveRecord::Base
     users.offset(1)
   end
 
+  def create_general_group(retrospective_id)
+    stickies_ids = self.ungrouped_stickies.collect(&:id)
+
+    data = {
+      name: 'General',
+      retrospective_id: retrospective_id,
+      initial_sticky_id: stickies_ids.pop,
+      sticky_ids: stickies_ids
+    }
+
+    Group.create!(data)
+  end
 end

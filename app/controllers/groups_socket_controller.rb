@@ -2,9 +2,12 @@ class GroupsSocketController < FayeRails::Controller
 
   observe Group, :after_create do |group|
     data = group.attributes
-    data[:sticky_ids] = group.sticky_ids
-    GroupsSocketController.publish("/retrospectives/#{group.retrospective.id}/groups/created",
-                                   data)
+
+    if data['name'] != 'General'
+      data[:sticky_ids] = group.sticky_ids
+      GroupsSocketController.publish("/retrospectives/#{group.retrospective.id}/groups/created",
+                                     data)
+    end
   end
 
   observe Group, :after_destroy do |group|

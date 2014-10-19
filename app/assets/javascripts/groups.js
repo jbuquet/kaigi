@@ -83,12 +83,18 @@ function groupSticky($droppable, $dropped) {
   if (droppedIntoGroup) {
     CLIENT.publish('/groups/add_sticky', { id: droppedIntoGroup.id, sticky_id: droppedSticky.id });
   } else if(!$droppable.hasClass('grouped')){
-    var group = {
-      retrospective_id: RETRO.id,
-      initial_sticky_id: droppedIntoSticky.id,
-      sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
-    };
-    CLIENT.publish('/groups/create', { group: group });
+    var group_name = prompt('Please enter a group name:', '');
+
+    if (group_name != null) {
+
+      var group = {
+        name: group_name,
+        retrospective_id: RETRO.id,
+        initial_sticky_id: droppedIntoSticky.id,
+        sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
+      };
+      CLIENT.publish('/groups/create', { group: group });
+    }
   }
 }
 
