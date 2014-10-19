@@ -8,7 +8,8 @@ class StatusesSocketController < FayeRails::Controller
 
       retrospective = Retrospective.find(retrospective_id)
 
-      if retrospective.current_status.status_type == Status::SET_VOTE_GROUPS_TIMEBOX
+      if retrospective.current_status.status_type == Status::SET_VOTE_GROUPS_TIMEBOX &&
+        retrospective.ungrouped_stickies.any?
         retrospective.create_general_group(retrospective_id)
       end
 

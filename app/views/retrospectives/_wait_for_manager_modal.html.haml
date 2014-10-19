@@ -6,6 +6,10 @@
           Hey there!
 
       .modal-body.clearfix
-        Your retrospective is about to begin just a few minutes to go.
+        - if current_retro.current_status.status_type == 'set_vote_groups_timebox'
+          While we wait for the moderator to start the next stage here is some useful info.
+          = image_tag('help/votes.png', height: 160)
+        - else
+          Your retrospective is about to begin just a few minutes to go.
 
 .modal-backdrop.fade.in

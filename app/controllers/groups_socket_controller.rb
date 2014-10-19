@@ -72,7 +72,6 @@ class GroupsSocketController < FayeRails::Controller
 
         GroupsSocketController.publish("/retrospectives/#{sticky.retrospective.id}/groups/sticky_removed",
                                        { group: group, sticky: sticky })
-
       end
     end
   end
