@@ -1,0 +1,10 @@
+- current_retro.ungrouped_stickies.each do |sticky|
+  %li.sticky.single{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
+    %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
+      = user_initial(sticky.user)
+
+    - if current_user_can_delete?(sticky)
+      %i.fa.fa-trash.remove-sticky.pull-right
+
+    %ul.sticky-container
+    %p= sticky.body

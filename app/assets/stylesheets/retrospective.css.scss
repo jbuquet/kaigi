@@ -193,9 +193,12 @@ body{
   position: relative;
 }
 
-#joinModal{
+.modal {
   margin-top: 100px;
   height: 400px;
+}
+
+#joinModal{
   .modal-header{
     color: #686867;
   }
@@ -217,8 +220,6 @@ body{
 
 #shareModal,
 #currentTimeboxModal {
-  margin-top: 100px;
-  height: 400px;
   .modal-header{
     color: #686867;
   }

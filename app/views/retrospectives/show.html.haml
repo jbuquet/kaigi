@@ -1,41 +1,14 @@
 - if current_user
   .container-stickies
     %ul#stickies
-      %li.new-sticky.new
-        %ul.sticky-container
-          %form#new_sticky{ 'accept-charset'=> 'UTF-8' }
-            %textarea.sticky-text{ maxlength: '50', resize: 'off', cols: '15', name: 'sticky[body]',
-                                 rows: '5' }
-            .sticky-types
-              .sticky-type.good-type
-                = image_tag('good.png')
-              .sticky-type.idea-type
-                = image_tag('idea.png')
-              .sticky-type.bad-type
-                = image_tag('bad.png')
-      - current_retro.groups.each do |group|
-        - initial_sticky = group.initial_sticky
-        %li.sticky.group.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }
-          %span.badge.pull-left
-            Votes:
-            %span.vote-count= group.votes
-          %span.badge.vote-group.pull-right
-            +1
+      - if current_user_can_create?
+        = render 'stickies/new'
 
-          %ul.sticky-container
-            - group.stickies.each do |sticky|
-              - if sticky != initial_sticky
-                %li.grouped{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
-                  %p= sticky.body
-          %p= initial_sticky.body
+      - if current_user_can_group?
+        = render 'stickies/grouped_list'
 
-      - current_retro.ungrouped_stickies.each do |sticky|
-        %li.sticky.single{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
-          %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
-            = user_initial(sticky.user)
-          %i.fa.fa-trash.remove-sticky.pull-right
-          %ul.sticky-container
-          %p= sticky.body
+      - if current_user_can_group? || current_user_can_create?
+        = render 'stickies/ungrouped_list'
 
 - else
   = render 'users/join_modal'

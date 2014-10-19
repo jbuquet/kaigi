@@ -21,8 +21,7 @@ class RetrospectivesController < ApplicationController
 
     user = retrospective.users.create!(:name => owner_name, color: COLORS.sample)
 
-    session[:is_manager] = true
-    add_user_to_retro(retrospective, user.id)
+    add_user_to_retro(retrospective, user.id, true)
 
     redirect_to retrospective_path(retrospective.public_key)
   end

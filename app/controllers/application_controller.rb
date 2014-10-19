@@ -22,16 +22,33 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def add_user_to_current_retro(user_id)
-    add_user_to_retro(current_retro, user_id)
+  def current_user_is_manager?
+    user_is_manager?(current_retro)
+  end
+  helper_method :current_user_is_manager?
+
+  def add_user_to_current_retro(user_id, is_manager = false)
+    add_user_to_retro(current_retro, user_id, is_manager)
   end
 
-  def add_user_to_retro(retro, user_id)
+  def add_user_to_retro(retro, user_id, is_manager = false)
     session_retro_users[retro.id] = user_id
+
+    if is_manager
+      session_retro_managers[retro.id] = true
+    end
   end
 
   def session_retro_users
     session[:retro_users] ||= {}
+  end
+
+  def user_is_manager?(retro)
+    session_retro_managers[retro.id.to_s]
+  end
+
+  def session_retro_managers
+    session[:retro_managers] ||= {}
   end
 
   def require_retro

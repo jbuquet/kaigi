@@ -59,4 +59,9 @@
 
 
 = render 'retrospectives/share_link_modal'
-= render 'retrospectives/set_status_modal'
+
+- if current_user_is_manager? && set_timebox_in_current_status
+  = render 'retrospectives/set_status_modal'
+
+- if !current_user_is_manager? && set_timebox_in_current_status
+  = render 'retrospectives/wait_for_manager_modal'
