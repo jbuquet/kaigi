@@ -1,4 +1,6 @@
-- if current_user
+- if finished?
+  = render 'summary'
+- elsif current_user
   .container-stickies
     %ul#stickies
       - if current_user_can_create?
@@ -9,9 +11,5 @@
 
       - if grouping? || current_user_can_create?
         = render 'stickies/ungrouped_list'
-
-      - if finished?
-        = render 'summary'
-
 - else
   = render 'users/join_modal'

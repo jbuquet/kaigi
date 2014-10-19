@@ -34,7 +34,6 @@ module RetrospectivesHelper
 
   def finished?
     return false unless current_retro
-    return false unless current_user
     return false unless current_retro.current_status
 
     current_retro.current_status.status_type == Status::FINISH
