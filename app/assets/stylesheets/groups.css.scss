@@ -26,6 +26,9 @@
       background-color: #F7B04C;
       padding: 4px 8px;
       cursor: pointer;
+      &:hover {
+        background-color: #8AC007;
+      }
     }
 
     .pull-left {
