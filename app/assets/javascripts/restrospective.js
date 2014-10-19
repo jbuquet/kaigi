@@ -95,8 +95,12 @@ function hasTypeSelected(elem){
   return elem.is('.good, .bad, .idea')
 }
 
+function hasEmptyText(elem) {
+  return $.trim(elem.val()) == ''
+}
+
 function initializeSticky() {
-  $('.new-sticky').find('textarea').val('Write something here and press enter :)').focus();
+  $('.new-sticky').find('textarea').attr('placeholder', 'Write something here and press enter :)').focus();
 }
 
 $( document ).ready(function() {
@@ -122,7 +126,7 @@ $( document ).ready(function() {
       };
 
 
-      if(hasTypeSelected($(this))){
+      if(!hasEmptyText($(this).find("textarea")) && hasTypeSelected($(this))){
         $(this).find("textarea").val("");
         CLIENT.publish('/stickies/create', { sticky: sticky });
       }
