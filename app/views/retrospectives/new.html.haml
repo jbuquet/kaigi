@@ -20,10 +20,10 @@
                 .col-md-8.col-md-offset-2
                   .row
                     .col-md-6{style: 'padding-right: 0'}
-                      = text_field_tag 'retrospective[owner_name]', '', placeholder: 'Your name', class: 'retro-input'
+                      = text_field_tag 'retrospective[owner_name]', '', placeholder: 'Your name', class: 'retro-input', maxlength: '30'
 
                     .col-md-6{style: 'padding-left: 0'}
-                      = text_field_tag 'retrospective[name]', '', placeholder: 'Retrospective name', class: 'retro-input'
+                      = text_field_tag 'retrospective[name]', '', placeholder: 'Retrospective name', class: 'retro-input', maxlength: '35'
                     .vertical-separator
 
               .row
