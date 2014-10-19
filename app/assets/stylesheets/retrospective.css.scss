@@ -515,10 +515,11 @@ ul {
   ul#stickies {
     .sticky {
       cursor: pointer;
+      padding: 0.4em 0.3em 0.4em 0.4em;
     }
 
     .sticky:hover {
-      border: 2px solid #fff;
+      border: .1em solid #fff;
     }
   }
 }
