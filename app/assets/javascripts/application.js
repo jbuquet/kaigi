@@ -17,6 +17,7 @@
 //= require jquery-ui.min
 //= require jquery.textfill.min
 //= require jquery.numeric
+//= require jquery.cookie
 //= require ZeroClipboard
 //= require jquery.plugin
 //= require jquery.countdown
