@@ -5,24 +5,24 @@ function userInitial(user) {
 function subscribeForRetroUsers() {
   CLIENT.publish('/users/join', { user: USER });
 
-  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/users/joined', function(user) {
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/users/joined', function(data) {
+    var user = data.user;
+    var usersCount = data.users_count - 1;
+
     var span = $('<li>').addClass('user')
                         .css('background-color', user.color)
                         .html(userInitial(user))
                         .data({ user: user });
 
     var userExists = false;
-    var otherUsersConnected = -1;
     $('#users .user').each(function() {
       var $this = $(this);
-      otherUsersConnected++;
       userExists = $this.data('user').id == user.id;
     });
 
     if (!userExists) {
-
       $('#users').removeClass('hide').append(span);
-      $('.dropdown-toggle').text('+' + otherUsersConnected);
+      $('.dropdown-toggle').text('+' + usersCount);
     }
   });
 

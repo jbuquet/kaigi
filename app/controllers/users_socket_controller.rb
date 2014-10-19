@@ -9,8 +9,13 @@ class UsersSocketController < FayeRails::Controller
 
       if retrospective
         USERS[client_id] = user.id
+        data = {
+          user: user,
+          users_count: retrospective.users.count
+        }
+
         UsersSocketController.publish("/retrospectives/#{retrospective.id}/users/joined",
-                                      user)
+                                      data)
       end
     end
 
