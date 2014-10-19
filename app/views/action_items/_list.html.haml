@@ -1,7 +1,8 @@
-#action-items
+- style = 'width: 30%; float: right;' if discussing?
+#action-items{ style: style}
   - current_retro.action_items.each do |action_item|
     .panel.panel-success.text-center.action-item{ data: { action_item: action_item.to_json } }
       .panel-body
         = action_item.action
-        - if current_user_is_manager? && defining_action_items?
+        - if current_user_is_manager? && (defining_action_items? || discussing?)
           %i.fa.fa-trash.remove-action-item.pull-right

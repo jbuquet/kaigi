@@ -9,7 +9,12 @@
 
   - unless defining_action_items?
     .container-stickies
-      %ul#stickies
+
+      - if discussing?
+        = render 'action_items/list'
+
+      - group_style = 'width: 70%;' if discussing?
+      %ul#stickies{ style: group_style }
         - if current_user_can_create?
           = render 'stickies/new'
 
@@ -21,7 +26,7 @@
 
   .container
     .col-md-8.col-md-offset-2
-      - if discussing? || defining_action_items?
+      - if defining_action_items?
         = render 'action_items/list'
 
 - else
