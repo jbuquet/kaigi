@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
   def create
-    user_params[:name] = USER_NAMES.sample if user_params[:name] == ''
-    user = User.create!(user_params)
+    params_user = user_params
+    params_user.merge!(name: USER_NAMES.sample) if user_params[:name].blank?
+
+    user = User.create!(params_user)
     add_user_to_current_retro(user.id)
 
     redirect_to retrospective_path(current_retro.public_key)

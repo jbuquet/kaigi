@@ -50,6 +50,12 @@ function createSticky($elem, sticky){
 }
 
 function ungroupSticky($item) {
+  var sticky = $item.data('sticky');
+
+  CLIENT.publish('/groups/remove_sticky', { sticky_id: sticky.id });
+}
+
+function drawUngroupSticky($item) {
   $item.fadeOut(function() {
     $item.insertAfter($('.new-sticky')).fadeIn( function(){
       $item.removeClass('sticky-min grouped').addClass('sticky-max single sticky');
@@ -95,8 +101,12 @@ function hasTypeSelected(elem){
   return elem.is('.good, .bad, .idea')
 }
 
+function hasEmptyText(elem) {
+  return $.trim(elem.val()) == ''
+}
+
 function initializeSticky() {
-  $('.new-sticky').find('textarea').val('Write something here and press enter :)').focus();
+  $('.new-sticky').find('textarea').attr('placeholder', 'Write something here and press enter :)').focus();
 }
 
 $( document ).ready(function() {
@@ -107,7 +117,6 @@ $( document ).ready(function() {
   $('.container-stickies').droppable({
     accept: '.grouped',
     drop: function(event, ui) {
-      console.log('ungroup');
       ungroupSticky(ui.draggable);
     }
   });
@@ -122,7 +131,7 @@ $( document ).ready(function() {
       };
 
 
-      if(hasTypeSelected($(this))){
+      if(!hasEmptyText($(this).find("textarea")) && hasTypeSelected($(this))){
         $(this).find("textarea").val("");
         CLIENT.publish('/stickies/create', { sticky: sticky });
       }

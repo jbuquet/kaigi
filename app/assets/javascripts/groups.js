@@ -27,19 +27,29 @@ function subscribeForRetroGroups() {
     $('#stickies .sticky').each(function() {
       var $this = $(this);
 
-
       if($this.data('group') !== undefined){
         if ($this.data('group').initial_sticky_id == group.initial_sticky_id) {
           $droppable = $this;
         }
-      }
-      else if ($this.data('sticky').id == sticky.id) {
+      } else if ($this.data('sticky').id == sticky.id) {
         $dropped = $this;
       }
     });
 
-
     drawGroupSticky($droppable, $dropped)
+  });
+
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/sticky_removed', function(data) {
+    var group = data.group;
+    var sticky = data.sticky;
+
+    $('#stickies .grouped').each(function() {
+      var $this = $(this);
+
+      if ($this.data('sticky').id == sticky.id) {
+        drawUngroupSticky($this)
+      }
+    });
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/voted', function(data) {
@@ -68,13 +78,10 @@ function groupSticky($droppable, $dropped) {
   var droppedIntoGroup = $droppable.data('group');
   var droppedIntoSticky = $droppable.data('sticky');
   var droppedSticky = $dropped.data('sticky');
-  console.log('grouping...')
 
   if (droppedIntoGroup) {
-    console.log('A');
     CLIENT.publish('/groups/add_sticky', { id: droppedIntoGroup.id, sticky_id: droppedSticky.id });
   } else if(!$droppable.hasClass('grouped')){
-    console.log('B');
     var group = {
       retrospective_id: RETRO.id,
       initial_sticky_id: droppedIntoSticky.id,
