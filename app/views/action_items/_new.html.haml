@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-body
+    %form#new_action_item{ 'accept-charset'=> 'UTF-8' }
+      .input-group
+        %input.form-control{ type: :text, name: 'action_item[action]' }
+        %span.input-group-btn
+          %button.btn.btn-default{ type: :submit } Add Action Item

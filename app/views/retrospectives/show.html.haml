@@ -1,6 +1,12 @@
 - if finished?
   = render 'summary'
 - elsif current_user
+
+  .container
+    .col-md-8.col-md-offset-2
+      - if discussing? && current_user_is_manager?
+        = render 'action_items/new'
+
   .container-stickies
     %ul#stickies
       - if current_user_can_create?
@@ -11,5 +17,11 @@
 
       - if grouping? || current_user_can_create?
         = render 'stickies/ungrouped_list'
+
+  .container
+    .col-md-8.col-md-offset-2
+      - if discussing?
+        = render 'action_items/list'
+
 - else
   = render 'users/join_modal'

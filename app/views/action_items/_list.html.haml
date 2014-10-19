@@ -1,0 +1,6 @@
+#action-items
+  - current_retro.action_items.each do |action_item|
+    .panel.panel-success.text-center.action-item{ data: { action_item: action_item.to_json } }
+      .panel-body
+        = action_item.action
+        %i.fa.fa-trash.remove-action-item.pull-right

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018192942) do
+ActiveRecord::Schema.define(version: 20141019144543) do
+
+  create_table "action_items", force: true do |t|
+    t.text     "action"
+    t.integer  "retrospective_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", force: true do |t|
     t.string   "name"

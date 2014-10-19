@@ -19,6 +19,10 @@
     CURRENT_STATUS = JSON.parse('#{current_retro.current_status.try(:to_json) || {}}');
     CURRENT_IS_USER_MODERATOR = #{current_user_is_manager? ? true : false};
 
+    var schema = 'http://';
+    var uri = schema + window.document.location.host + '/socket';
+    CLIENT = new Faye.Client(uri);
+
   %body{ data: { retro: current_retro.to_json, user: current_user.try(:to_json) } }
     %nav.navbar.navbar-custom.navbar-fixed-top.navbar-retro{:role => "navigation"}
       .row.header-container
