@@ -541,3 +541,20 @@ textarea::-webkit-input-placeholder {  color: #333333;}
 #summary {
   margin-top: 3em;
 }
+
+.expand-modal {
+  height: auto;
+
+  .modal-dialog {
+    width: 752px;
+  }
+
+  .modal-body {
+    position: relative;
+    overflow-y: auto;
+    height: auto;
+    width: auto;
+    padding: 15px;
+  }
+}
+

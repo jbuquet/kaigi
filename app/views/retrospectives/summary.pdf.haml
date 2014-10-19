@@ -1,3 +1,27 @@
 = wicked_pdf_stylesheet_link_tag 'application'
 
-= render 'summary.html'
+
+:css
+  h2, h3 {letter-spacing: 0}
+#summary.container
+  .col-xs-3
+    %h3{style: 'letter-spacing: 0;'}
+      Manager:
+  .col-xs-4
+    %h3{ style: "letter-spacing: 0; color: #{current_retro.manager.color}" }#{current_retro.manager.name}
+  .col-xs-2.col-md-2
+    %h2
+      = link_to retrospective_summary_path(current_retro.public_key, format: :pdf), class: 'pull-right' do
+        .fa.fa-download
+  .clearfix
+  - unless current_retro.participants.blank?
+    %h3
+      Participants:
+
+      - current_retro.participants.each do |participant|
+        %span{ style: "color: #{participant.color}" }
+          #{participant.name}
+
+  .clearfix
+
+  = render 'statuses/list.html'

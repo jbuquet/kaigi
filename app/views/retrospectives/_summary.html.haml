@@ -7,15 +7,18 @@
     = link_to retrospective_summary_path(current_retro.public_key, format: :pdf), class: 'pull-right' do
       .fa.fa-download
 
-  %h3
-    Participants:
+  - unless current_retro.participants.blank?
+    %h3
+      Participants:
 
-    - current_retro.participants.each do |participant|
-      %span{ style: "color: #{participant.color}" }
-        #{participant.name}
+      - current_retro.participants.each do |participant|
+        %span{ style: "color: #{participant.color}" }
+          #{participant.name}
 
   .clearfix
 
   = render 'statuses/list.html'
 
-  = render 'groups/list.html'
+  .row
+    .col-md-12
+      = render 'groups/list.html'
