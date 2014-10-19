@@ -11,6 +11,7 @@ function subscribeForRetroUsers() {
 
     var span = $('<li>').addClass('user')
                         .css('background-color', user.color)
+                        .attr('title', user.name)
                         .html(userInitial(user))
                         .data({ user: user });
 

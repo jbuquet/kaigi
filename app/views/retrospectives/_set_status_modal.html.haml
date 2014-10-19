@@ -49,7 +49,8 @@
           %ul#users-home
             - current_retro.users.each do |user|
               - if user != current_user
-                %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};", title: user.name }
+                %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};",
+                                  title: user.name }
                   = user_initial(user)
 
           .clearfix

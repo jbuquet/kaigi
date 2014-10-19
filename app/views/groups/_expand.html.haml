@@ -9,7 +9,8 @@
       .modal-body
         - group.stickies.each do |sticky|
           %li.sticky.single{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
-            %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
+            %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};",
+                                          title: sticky.user.name }
               = user_initial(sticky.user)
 
             - if current_user_can_delete?(sticky)

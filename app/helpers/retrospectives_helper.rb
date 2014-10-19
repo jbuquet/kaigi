@@ -54,4 +54,12 @@ module RetrospectivesHelper
     current_retro.current_status.status_type == Status::FINISH
   end
 
+  def current_retro_total_time
+    if current_retro.total_time
+      seconds_to_string(current_retro.total_time)
+    else
+      'N/A'
+    end
+  end
+
 end

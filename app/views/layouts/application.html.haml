@@ -60,7 +60,8 @@
               %ul#users.dropdown-menu.pull-right.connected-users{:class => ('hide' if (current_retro.users.size - 1) == 0 )}
                 - current_retro.users.each do |user|
                   - if user != current_user
-                    %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};" }
+                    %li.user{ data: { user: user.to_json }, style: "background-color: #{user.color};",
+                              title: user.name }
                       = user_initial(user)
 
           .username.right-floated

@@ -1,6 +1,5 @@
 = wicked_pdf_stylesheet_link_tag 'application'
 
-
 :css
   h2, h3 {letter-spacing: 0}
 #summary.container
@@ -10,6 +9,12 @@
   .col-xs-12
     %h3{style: 'letter-spacing: 0;'}
       = l current_retro.created_at
+
+  .col-xs-12
+    %h3{style: 'letter-spacing: 0;'}
+      Total time:
+      = current_retro_total_time
+
   .col-xs-3
     %h3{style: 'letter-spacing: 0;'}
       Moderator:

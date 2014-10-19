@@ -38,6 +38,7 @@ function reloadStickies(){
 function createSticky($elem, sticky){
   var newSticky = $("<li>").addClass('sticky single').addClass(sticky.sticky_type).data({ sticky: sticky });
   var initial = $('<span>').addClass('pull-left user-initial')
+                           .attr('title', sticky.user.name)
                            .css('background-color', sticky.user.color)
                            .text(userInitial(sticky.user));
   newSticky.append(initial);

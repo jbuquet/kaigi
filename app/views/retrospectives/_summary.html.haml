@@ -1,5 +1,9 @@
 #summary.container
   %h4{style: 'font-weight: 300;'}
+    Total time:
+    = current_retro_total_time
+
+  %h4{style: 'font-weight: 300;'}
     Moderator:
     %span{ style: "color: #{current_retro.manager.color};" }
       #{current_retro.manager.name}

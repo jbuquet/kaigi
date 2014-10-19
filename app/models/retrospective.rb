@@ -40,4 +40,14 @@ class Retrospective < ActiveRecord::Base
 
     Group.create!(data)
   end
+
+  def total_time
+    start_status = statuses.first
+    final_status = statuses.last
+
+    return unless start_status && final_status
+
+    final_status.created_at.to_i - start_status.created_at.to_i
+  end
+
 end
