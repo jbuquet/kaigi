@@ -558,3 +558,17 @@ textarea::-webkit-input-placeholder {  color: #333333;}
   }
 }
 
+.expand-detail {
+  display:none;
+  background-image: image-url("expand.png");
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter:alpha(opacity=50); /* IE */
+  -moz-opacity:0.5; /* Mozilla */
+  opacity: 0.5; /* CSS3 */
+  width: 150px;
+  height: 100%;
+  margin-left: -6px;
+}
+

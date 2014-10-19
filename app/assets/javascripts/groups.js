@@ -130,7 +130,7 @@ $(function() {
     CLIENT.publish('/groups/delete', { id: group.id });
   });
 
-  $('#stickies').on('click', '.group .vote-group', function() {
+  $('#stickies').on('click', '.group .vote-group', function(event) {
     var $this = $(this);
 
     var group = $this.parents('.group').data('group');

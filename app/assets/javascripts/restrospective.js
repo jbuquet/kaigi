@@ -198,4 +198,11 @@ $( document ).ready(function() {
     $('.sticky-text').focus();
   });
 
+  $('.group-color').hover(function(){
+    $(this).find('.expand-detail').show();
+  }, function(){
+    $(this).find('.expand-detail').hide();
+    }
+  );
+
 });
