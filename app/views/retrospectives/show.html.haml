@@ -4,7 +4,7 @@
       - if current_user_can_create?
         = render 'stickies/new'
 
-      - if grouping?
+      - if grouping? || voting? || discussing?
         = render 'stickies/grouped_list'
 
       - if grouping? || current_user_can_create?

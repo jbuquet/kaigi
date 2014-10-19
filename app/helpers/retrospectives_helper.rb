@@ -64,4 +64,29 @@ module RetrospectivesHelper
       'Next Stage'
     end
   end
+
+  def voting?
+    return false unless current_retro
+    return false unless current_user
+    return false unless current_retro.current_status
+
+    current_retro.current_status.status_type == Status::VOTE_GROUPS
+  end
+
+  def grouping?
+    return false unless current_retro
+    return false unless current_user
+    return false unless current_retro.current_status
+
+    current_retro.current_status.status_type == Status::CREATE_GROUPS
+  end
+
+  def discussing?
+    return false unless current_retro
+    return false unless current_user
+    return false unless current_retro.current_status
+
+    current_retro.current_status.status_type == Status::DISCUSS_STICKIES
+  end
+
 end

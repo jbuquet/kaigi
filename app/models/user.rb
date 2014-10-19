@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   def has_votes_left?
     return false unless retrospective
 
-    retrospective.max_votes - self.used_votes > 0
+    remaining_votes > 0
+  end
+
+  def remaining_votes
+    retrospective.max_votes - used_votes
   end
 
 end

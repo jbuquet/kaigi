@@ -28,28 +28,13 @@ module UsersHelper
     current_retro.current_status.status_type == Status::WRITE_STICKIES
   end
 
-  def voting?
-    return false unless current_retro
-    return false unless current_user
-    return false unless current_retro.current_status
-
-    current_retro.current_status.status_type == Status::VOTE_GROUPS
-  end
-
-  def grouping?
-    return false unless current_retro
-    return false unless current_user
-    return false unless current_retro.current_status
-
-    current_retro.current_status.status_type == Status::CREATE_GROUPS
-  end
-
   def current_user_can_vote?
     return false unless current_retro
     return false unless current_user
     return false unless current_retro.current_status
 
-    current_retro.current_status.status_type == Status::VOTE_GROUPS
+    current_retro.current_status.status_type == Status::VOTE_GROUPS &&
+      current_user.has_votes_left?
   end
 
 end

@@ -57,7 +57,9 @@
 
           - if voting?
             .remaining-points.right-floated
-              = "Remaining votes #{current_retro.max_votes - current_user.used_votes}"
+              Remaining votes
+              %strong#user-remaining-votes
+                = current_user.remaining_votes
 
     -#= render 'retrospectives/settings'
 

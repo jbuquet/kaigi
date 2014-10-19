@@ -61,6 +61,8 @@ function subscribeForRetroGroups() {
         $this.find('.vote-count').html(group.votes);
       }
     });
+
+    $('#user-remaining-votes').html(user.remaining_votes)
   });
 
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/deleted', function(group) {

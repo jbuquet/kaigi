@@ -3,8 +3,8 @@ class Group < ActiveRecord::Base
   has_many :stickies
   has_one :initial_sticky, class_name: :Sticky
 
-  def vote!
-    self.update
+  def self.order_by_votes
+    order(votes: :desc)
   end
 
 end

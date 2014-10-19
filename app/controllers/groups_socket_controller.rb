@@ -35,8 +35,12 @@ class GroupsSocketController < FayeRails::Controller
 
         group.reload
         user.reload
+
+        user_data = user.attributes
+        user_data[:remaining_votes] = user.remaining_votes
+
         GroupsSocketController.publish("/retrospectives/#{group.retrospective.id}/groups/voted",
-                                       { group: group, user: user })
+                                       { group: group, user: user_data })
       end
     end
   end
