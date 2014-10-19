@@ -4,6 +4,12 @@
 :css
   h2, h3 {letter-spacing: 0}
 #summary.container
+  .col-xs-6
+    %h1{style: 'letter-spacing: 0;'}
+      = current_retro.name
+  .col-xs-12
+    %h3{style: 'letter-spacing: 0;'}
+      = l current_retro.created_at
   .col-xs-3
     %h3{style: 'letter-spacing: 0;'}
       Manager:
