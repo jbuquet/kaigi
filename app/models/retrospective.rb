@@ -34,7 +34,6 @@ class Retrospective < ActiveRecord::Base
     data = {
       name: 'General',
       retrospective_id: retrospective_id,
-      initial_sticky_id: stickies_ids.pop,
       sticky_ids: stickies_ids
     }
 

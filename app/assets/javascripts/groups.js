@@ -7,9 +7,11 @@ function subscribeForRetroGroups() {
       var $this = $(this);
       var sticky = $this.data('sticky');
 
-      if ($this.data('sticky').id == group.initial_sticky_id) {
+      var initial_sticky_id = group.sticky_ids[0];
+      var other_sticky_id = group.sticky_ids[1];
+      if (sticky.id == initial_sticky_id) {
         $droppable = $this;
-      } else if ($.inArray(sticky.id, group.sticky_ids) != -1) {
+      } else if (sticky.id == other_sticky_id) {
         $dropped = $this;
       }
     });
@@ -90,7 +92,6 @@ function groupSticky($droppable, $dropped) {
       var group = {
         name: group_name,
         retrospective_id: RETRO.id,
-        initial_sticky_id: droppedIntoSticky.id,
         sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
       };
       CLIENT.publish('/groups/create', { group: group });
