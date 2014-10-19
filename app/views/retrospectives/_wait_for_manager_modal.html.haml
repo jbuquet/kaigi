@@ -5,18 +5,23 @@
         %h4.modal-title
           Hey there!
 
-      .modal-body.clearfix
+      .modal-body
         - if current_retro.current_status.status_type == Status::INVITE_USERS
-          Your retrospective is about to begin just a few minutes to go.
+          %p
+            We are waiting for you colleagues to join.
+            Your retrospective is about to begin...
 
         - elsif current_retro.current_status.status_type == Status::SET_VOTE_GROUPS_TIMEBOX
-          While we wait for the moderator to start the next stage here is some useful info.
-          = image_tag('help/votes.png', height: 160)
+          %p
+            While we wait for the moderator to start the next stage here is some useful info.
+
+          = image_tag('help/voting.png', height: 160)
 
         - elsif current_retro.current_status.status_type == Status::SET_DISCUSS_STICKIES_TIMEBOX
-          While we wait for the moderator to start the next stage here is some useful info.
+          %p
+            We are waiting for the moderator to start the next stage...
 
         - else
-          Wait.
+          Please wait the moderator is doing some important tasks...
 
 .modal-backdrop.fade.in
