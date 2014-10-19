@@ -85,7 +85,7 @@ function groupSticky($droppable, $dropped) {
   } else if(!$droppable.hasClass('grouped')){
     var group_name = prompt('Please enter a group name:', '');
 
-    if (group_name != null) {
+    if ($.isEmptyObject(group_name)) {
 
       var group = {
         name: group_name,

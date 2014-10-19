@@ -16,7 +16,11 @@ $(function() {
 
     var status = {};
 
-    status.estimated_duration = parseInt($('input[name="status[minutes]"]').val()) * 60;
+    var minutes = parseInt($('input[name="status[minutes]"]').val());
+    if (minutes > 999)
+      minutes = 999;
+
+    status.estimated_duration =  minutes * 60;
 
     var votes_data = {};
     votes_data.max_votes = parseInt($('input[name="retrospective[max_votes]"]').val());

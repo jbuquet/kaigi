@@ -27,7 +27,7 @@
                     %span.votes-title
                       = 'Votes per user:'
                   .col-md-2
-                    %input{ name: 'retrospective[max_votes]', min: '01', max: '10',  value: 5, type: 'number', class: 'votes-input text-center' }
+                    %input{ name: 'retrospective[max_votes]', min: '01', max: '10', value: 5, type: 'number', class: 'votes-input text-center' }
 
             %li#set_timebox_section
               .row
@@ -35,7 +35,7 @@
                   %span.time-title
                     Set the time for the next section:
                 .col-md-2
-                  %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center' }
+                  %input{ name: 'status[minutes]', min: '01', max: '999', value: default_timebox, type: 'number', class: 'time-input text-center' }
                 .col-md-2
                   %span.minutes
                     minutes
