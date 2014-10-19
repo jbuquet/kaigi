@@ -16,15 +16,26 @@
 
           %hr.time-box-separator
 
+
+
         %ul.time-box
           %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
+            %li
+              - if current_retro.current_status.try(:status_type) == Status::SET_VOTE_GROUPS_TIMEBOX
+                .row
+                  .col-md-6
+                    %span.votes-title
+                      = 'Votes per user:'
+                  .col-md-2
+                    %input{ name: 'retrospective[max_votes]', min: '01', max: '10',  value: 5, type: 'number', class: 'votes-input text-center' }
+
             %li#set_timebox_section
               .row
                 .col-md-6
                   %span.time-title
                     Set the time for the next section:
                 .col-md-2
-                  %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center ' }
+                  %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center' }
                 .col-md-2
                   %span.minutes
                     minutes

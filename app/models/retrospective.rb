@@ -11,4 +11,12 @@ class Retrospective < ActiveRecord::Base
   def current_status
     Status.where(retrospective_id: self.id, duration: nil).last
   end
+
+  def self.set_max_votes(votes_data)
+    retrospective_id = votes_data['retrospective_id']
+
+    retrospective = Retrospective.find(retrospective_id)
+
+    retrospective.update_attribute(:max_votes, votes_data['max_votes'])
+  end
 end

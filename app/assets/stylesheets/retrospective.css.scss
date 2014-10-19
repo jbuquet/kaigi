@@ -84,6 +84,13 @@ body{
     }
 
   }
+
+  .remaining-points {
+    width: 113px;
+    color: #000000;
+    font-size: 13px;
+    line-height: 2;
+  }
 }
 
 #settings-btn {
@@ -507,3 +514,15 @@ ul {
 }
 
 textarea::-webkit-input-placeholder {  color: #333333;}
+
+.votes-title{
+  margin-bottom: 10px;
+  display: block;
+  font-size: 16px;
+  color: black;
+}
+
+.votes-input{
+  width: 100%;
+  line-height: normal;
+}

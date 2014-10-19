@@ -18,6 +18,15 @@ $(function() {
 
     status.estimated_duration = parseInt($('input[name="status[minutes]"]').val()) * 60;
 
+    var votes_data = {};
+    votes_data.max_votes = parseInt($('input[name="retrospective[max_votes]"]').val());
+
+    if (votes_data.max_votes > 0) {
+      votes_data.retrospective_id = RETRO.id;
+
+      CLIENT.publish('/retrospectives/set_retro_votes', { votes_data: votes_data });
+    }
+
     if (status.estimated_duration > 0) {
       status.retrospective_id = RETRO.id;
 
