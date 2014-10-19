@@ -5,7 +5,7 @@ module UsersHelper
   end
 
   def current_user_can_delete?(sticky)
-    return current_user_can_create?
+    return unless current_user_can_create?
     return true if current_user_is_manager?
 
     sticky.user == current_user

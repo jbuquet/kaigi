@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         %h4.modal-title
-          Please enter your name to start
+          Please enter your name to join
       .modal-body
         = form_tag(retrospective_users_path(:retrospective_id => current_retro.public_key), :method => :post) do
           = text_field_tag 'user[name]', '', placeholder: 'Your name', class: 'retro-input', autocomplete: 'off'

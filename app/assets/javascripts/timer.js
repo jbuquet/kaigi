@@ -4,7 +4,9 @@ function timerExpired() {
     retrospective_id: RETRO.id
   };
 
-  CLIENT.publish('/statuses/set_current_status', { status: status });
+  if (CURRENT_IS_USER_MODERATOR) {
+    CLIENT.publish('/statuses/set_current_status', { status: status });
+  }
 }
 
 function addMinutes(date, minutes) {

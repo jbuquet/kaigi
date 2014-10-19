@@ -33,7 +33,7 @@
 
           = link_to '--:--:--', '#', id: 'timer'
 
-          - if !set_timebox_in_current_status && !finished?
+          - if !set_timebox_in_current_status && !finished? && current_user_is_manager?
             %input#end_current_time.end-btn.radius2px{ type: :submit, value: next_stage_button_name }
 
           - if finished?

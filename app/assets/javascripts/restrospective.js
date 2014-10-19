@@ -41,10 +41,13 @@ function createSticky($elem, sticky){
                            .css('background-color', sticky.user.color)
                            .text(userInitial(sticky.user));
   newSticky.append(initial);
-  newSticky.append($('<i>').addClass('fa fa-trash remove-sticky pull-right'));
+
+  if (CURRENT_IS_USER_MODERATOR || sticky.user_id == USER.id) {
+    newSticky.append($('<i>').addClass('fa fa-trash remove-sticky pull-right'));
+  }
+
   newSticky.append($("<ul>").addClass('sticky-container'));
   newSticky.append($("<p>").text(sticky.body));
-  newSticky.addClass($elem.attr('class')).removeClass('new-sticky');
 
   $(newSticky).insertAfter($elem);
   reloadStickies();
@@ -73,7 +76,6 @@ function drawUngroupSticky($item) {
 }
 
 function drawGroupSticky($elem, $item) {
-  console.log($item);
   var $list = $elem.find('ul');
   if($elem.hasClass('single')) {
     $groupElem = $("<li>").addClass('sticky group group-color')
@@ -106,7 +108,7 @@ function drawGroupSticky($elem, $item) {
     $elem.prepend(votesCount);
     var addVote = $('<span>').addClass('badge vote-group pull-right').html('+1');
     $elem.prepend(addVote);
-  };
+  }
 
   $item.fadeOut(function() {
     $item.removeClass('sticky');
@@ -181,18 +183,18 @@ $( document ).ready(function() {
     $('.new-sticky').attr('class', 'new-sticky').addClass(GOOD_STICKY).data('type', GOOD_STICKY);
     $('.new-sticky').find('textarea').attr('placeholder', 'Write something that was good and press enter :)').focus();
     $('.sticky-text').focus();
-  })
+  });
 
   $('.idea-type').on('click', function(event){
     $('.new-sticky').attr('class', 'new-sticky').addClass(IDEA_STICKY).data('type', IDEA_STICKY);
     $('.new-sticky').find('textarea').attr('placeholder', 'Write some awesome idea :|').focus();
     $('.sticky-text').focus();
-  })
+  });
 
   $('.bad-type').on('click', function(event){
     $('.new-sticky').attr('class', 'new-sticky').addClass(BAD_STICKY).data('type', BAD_STICKY);
     $('.new-sticky').find('textarea').attr('placeholder', 'Write something that can be improved...').focus();
     $('.sticky-text').focus();
-  })
+  });
 
 });
