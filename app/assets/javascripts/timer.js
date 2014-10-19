@@ -4,7 +4,7 @@ function timerExpired() {
     retrospective_id: RETRO.id
   };
 
-  CLIENT.publish('/statuses/end_current_phase', { status: status });
+  CLIENT.publish('/statuses/set_current_status', { status: status });
 }
 
 function addMinutes(date, minutes) {
@@ -19,6 +19,10 @@ $(function() {
 
     $('#timer').countdown({ until: addMinutes(liftoffTime, estimatedMinutes), compact: true,
                             description: '', onExpiry: timerExpired });
+  }
+
+  if (!$.isEmptyObject(CURRENT_STATUS) && CURRENT_STATUS.status_type == 'finish') {
+    $('#timer').text('--:--:--');
   }
 
 });

@@ -1,18 +1,12 @@
 class StatusesSocketController < FayeRails::Controller
 
-  channel '/statuses/start_current_phase' do
+  channel '/statuses/set_current_status' do
     monitor :publish do
+      retrospective_id = data['status']['retrospective_id']
+
       Status.set_current_status(data['status'])
 
-      StatusesSocketController.publish('/statuses/started_current_phase', nil)
-    end
-  end
-
-  channel '/statuses/end_current_phase' do
-    monitor :publish do
-      Status.set_current_status(data['status'])
-
-      StatusesSocketController.publish('/statuses/ended_current_phase', nil)
+      StatusesSocketController.publish("/retrospectives/#{retrospective_id}/statuses/after_set_current_status", nil)
     end
   end
 end

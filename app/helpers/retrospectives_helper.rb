@@ -56,4 +56,12 @@ module RetrospectivesHelper
         ''
     end
   end
+
+  def next_stage_button_name
+    if current_retro.current_status.try(:status_type) == Status::DISCUSS_STICKIES
+      'Finish'
+    else
+      'Next Stage'
+    end
+  end
 end

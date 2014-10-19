@@ -28,8 +28,8 @@
 
           = link_to '--:--:--', '#', id: 'timer'
 
-          - if !set_timebox_in_current_status
-            %input#end_current_time{ type: :submit, value: 'Next Stage', class: 'end-btn radius2px' }
+          - if !set_timebox_in_current_status && current_retro.current_status.try(:status_type) != Status::FINISH
+            %input#end_current_time{ type: :submit, value: next_stage_button_name, class: 'end-btn radius2px' }
 
         .col-md-4#retro-share
           .settings-button.right-floated.participants-count

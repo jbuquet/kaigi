@@ -1,4 +1,14 @@
+function subscribeForRetroStatuses() {
+  CLIENT.subscribe('/retrospectives/' + RETRO.id + '/statuses/after_set_current_status', function() {
+    location.reload();
+  });
+}
+
 $(function() {
+  if (RETRO) {
+    subscribeForRetroStatuses();
+  }
+
   $('input[name="status[minutes]"]').numeric({ negative: false, decimal: false });
 
   $('#start_current_time').click(function(e){
@@ -11,7 +21,7 @@ $(function() {
     if (status.estimated_duration > 0) {
       status.retrospective_id = RETRO.id;
 
-      CLIENT.publish('/statuses/start_current_phase', { status: status });
+      CLIENT.publish('/statuses/set_current_status', { status: status });
     }
   });
 
@@ -23,14 +33,6 @@ $(function() {
       retrospective_id: RETRO.id
     };
 
-    CLIENT.publish('/statuses/end_current_phase', { status: status });
-  });
-
-  CLIENT.subscribe('/statuses/started_current_phase', function() {
-    location.reload();
-  });
-
-  CLIENT.subscribe('/statuses/ended_current_phase', function() {
-    location.reload();
+    CLIENT.publish('/statuses/set_current_status', { status: status });
   });
 });

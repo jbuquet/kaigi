@@ -63,20 +63,4 @@ class Status < ActiveRecord::Base
     new_status.update_attribute(:start_time, Time.now) if new_status
     retrospective.update_attribute(:current_status_id, new_status.id || nil)
   end
-
-  # def self.end_current_status(retrospective_id)
-  #   retrospective = Retrospective.find(retrospective_id)
-  #
-  #   status = Status.find(retrospective.current_status_id)<
-  #
-  #   new_status_id = nil
-  #   if status.status_type == WRITE_STICKIES
-  #     new_status_id = Status.create!({ :status_type => CREATE_GROUPS,
-  #                                      :retrospective_id => retrospective_id
-  #                                    }).id
-  #   end
-  #
-  #   status.update_attribute(:duration, Time.now.to_i - status.start_time.to_i)
-  #   retrospective.update_attribute(:current_status_id, new_status_id)
-  # end
 end
