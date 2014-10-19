@@ -258,9 +258,17 @@ body{
   }
 }
 
+span.invite-team-members{
+  margin-bottom: 10px;
+  display: block;
+  font-size: 16px;
+  color: black;
+}
+
 .time-box{
   width: 100%;
   margin-top: 8px;
+
   &:before{
     content: ' ';
     height: 0;
@@ -286,25 +294,21 @@ body{
     width: 100%;
     padding: 0;
     border-bottom: 1px solid #F1F1F1;
+    text-align: left;
+    span.minutes{
+      font-size: 16px;
+      margin-left: 10px;
+      display: block;
+    }
+    .time-title{
+      margin-bottom: 10px;
+      display: block;
+      font-size: 16px;
+      color: black;
+    }
     &.current-timebox{
       font-size: 23px;
-      text-align: left;
       color: #DF4B61 ;
-      text-align: right;
-
-      span, a {
-        margin: 20px;
-      }
-      .end-btn {
-        background-color: #df4b61;
-        color: #ffffff !important;
-        border: none;
-        line-height: 37px;
-        height: 40px;
-        font-size: 16px;
-        width: 60px;
-      }
-
     }
     &:last-child{
       border: none;
@@ -313,6 +317,17 @@ body{
 
 }
 
+#start_current_time {
+  background-color: #df4b61;
+  color: #ffffff !important;
+  border: none;
+  line-height: 37px;
+  height: 40px;
+  font-size: 16px;
+  width: 120px;
+  margin-top: 30px;
+  display: block;
+}
 .sticky, .new-sticky {
   margin: 15px;
   width: 150px;

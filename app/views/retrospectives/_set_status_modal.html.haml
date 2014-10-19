@@ -3,10 +3,12 @@
     .modal-content
       .modal-header
         %h4.modal-title
-          = "Set timebox to next stage: #{next_status_name}"
+          = "Next stage: #{next_status_name}"
 
       .modal-body.clearfix
         - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
+          %span.invite-team-members
+            You can invite team members using this link:
           .share-link
             %span= retrospective_url(current_retro.public_key)
 
@@ -18,12 +20,17 @@
           %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
             %li#set_timebox_section
               .row
-                .col-md-2.col-md-offset-3
+                .col-md-6
+                  %span.time-title
+                    Set the time for the next section:
+                .col-md-2
                   %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center ' }
-                .col-md-3
-                  %span= 'minutes'
-            %li.current-timebox
-              %span
-                %input#start_current_time{ type: :submit, value: 'Start', class: 'end-btn radius2px' }
+                .col-md-2
+                  %span.minutes
+                    minutes
+              .row
+                .col-md-4
+                  %span.current-timebox
+                    %input#start_current_time{ type: :submit, value: 'START RETRO', class: 'end-btn radius2px' }
 
 .modal-backdrop.fade.in
