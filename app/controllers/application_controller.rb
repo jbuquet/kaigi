@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
               #7986cb #5c6bc0 #3f51b5 #3949ab #29b6f6 #4fc3f7 #4dd0e1 #26c6da #42bd41 #2baf2b
               #dce775 #d4e157 #fff176 #ffee58 #ffca28 #ffa726 #fb8c00]
 
+  USER_NAMES = %w[Batman Hulk Ironman Spidey Superman Flash Wolverine Thor Green Lantern]
+
   def current_retro
     @current_retro ||= Retrospective.find_by_public_key(params[:retrospective_id] || params[:id])
   end

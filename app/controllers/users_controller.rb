@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def create
+    user_params[:name] = USER_NAMES.sample if user_params[:name] == ''
     user = User.create!(user_params)
     add_user_to_current_retro(user.id)
 

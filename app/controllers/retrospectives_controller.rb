@@ -8,6 +8,9 @@ class RetrospectivesController < ApplicationController
   def create
     retrospective_data = retrospective_params
     owner_name = retrospective_data.delete(:owner_name)
+    owner_name = 'Scrum Master' if owner_name == ''
+
+    retrospective_data[:name] = 'Rumble in the jungle' if retrospective_data[:name] == ''
 
     retrospective = Retrospective.create!(retrospective_data.merge(public_key: SecureRandom.urlsafe_base64))
 
