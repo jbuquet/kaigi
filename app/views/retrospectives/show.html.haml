@@ -4,10 +4,10 @@
       - if current_user_can_create?
         = render 'stickies/new'
 
-      - if current_user_can_group?
+      - if grouping?
         = render 'stickies/grouped_list'
 
-      - if current_user_can_group? || current_user_can_create?
+      - if grouping? || current_user_can_create?
         = render 'stickies/ungrouped_list'
 
 - else

@@ -3,7 +3,7 @@ IDEA_STICKY = 'idea';
 BAD_STICKY = 'bad';
 
 function reloadStickies(){
-  if (CURRENT_STATUS.status_type == 'create_groups') {
+  if (CURRENT_STATUS.status_type == 'create_groups' && CURRENT_IS_USER_MODERATOR) {
     $('.sticky').droppable({
       accept: function(el){
         return el.hasClass('single');
