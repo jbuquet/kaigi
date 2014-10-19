@@ -1,4 +1,5 @@
 function subscribeForRetroGroups() {
+  console.log('/groups/created')
   CLIENT.subscribe('/retrospectives/' + RETRO.id + '/groups/created', function(group) {
     // For now we are assuming that a group is created with 2 stickies.
     var $droppable;
@@ -26,7 +27,6 @@ function subscribeForRetroGroups() {
     var $dropped;
     $('#stickies .sticky').each(function() {
       var $this = $(this);
-
       if($this.data('group') !== undefined){
         if ($this.data('group').initial_sticky_id == group.initial_sticky_id) {
           $droppable = $this;

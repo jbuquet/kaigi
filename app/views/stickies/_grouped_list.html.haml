@@ -1,12 +1,6 @@
 - current_retro.groups.each do |group|
   - initial_sticky = group.initial_sticky
   %li.sticky.group.group-color{ data: { sticky: initial_sticky.to_json, group: group.to_json } }
-    %span.badge.pull-left
-      Votes:
-      %span.vote-count= group.votes
-    %span.badge.vote-group.pull-right
-      +1
-
     %ul.sticky-container
       - group.stickies.each do |sticky|
         - if sticky != initial_sticky

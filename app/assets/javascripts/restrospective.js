@@ -3,25 +3,26 @@ IDEA_STICKY = 'idea';
 BAD_STICKY = 'bad';
 
 function reloadStickies(){
+  if (CURRENT_STATUS.status_type == 'create_groups') {
+    $('.sticky').droppable({
+      accept: function(el){
+        return el.hasClass('single');
+      },
+      drop: function(event, ui) {
+        groupSticky($(this), ui.draggable);
+      }
+    });
 
-  $('.sticky').droppable({
-    accept: function(el){
-      return el.hasClass('single');
-    },
-    drop: function(event, ui) {
-      groupSticky($(this), ui.draggable);
-    }
-  });
+    $('li.single, li.grouped, li.group-color').draggable({
+      cancel: 'a.icon',
+      revert: 'invalid',
+      containment: 'document',
+      helper: 'clone',
+      cursor: 'move',
+      greedy: true
 
-  $('li.single, li.grouped, li.group-color').draggable({
-    cancel: 'a.icon',
-    revert: 'invalid',
-    containment: 'document',
-    helper: 'clone',
-    cursor: 'move',
-    greedy: true
-
-  });
+    });
+  }
 
   $('.sticky').textfill({
     minFontPixels: 4,
@@ -57,7 +58,7 @@ function ungroupSticky($item) {
 
 function drawUngroupSticky($item) {
   $item.fadeOut(function() {
-    $item.insertAfter($('.new-sticky')).fadeIn( function(){
+    $item.insertAfter($('.sticky:last')).fadeIn( function(){
       $item.removeClass('sticky-min grouped').addClass('sticky-max single sticky');
       $item.find('.remove-sticky').show();
       $item.find('.user-initial').show();
@@ -75,11 +76,13 @@ function drawGroupSticky($elem, $item) {
   if(!$elem.hasClass('group')) {
     $elem.addClass('group');
 
-    var group = $elem.data('group');
-    var votesCount = $('<span>').addClass('badge pull-left');
-    votesCount.append('Votes:');
-    votesCount.append($('<span>').addClass('vote-count').html(group.votes));
-    $elem.prepend(votesCount);
+    if (CURRENT_STATUS.status_type == 'vote_groups') {
+      var group = $elem.data('group');
+      var votesCount = $('<span>').addClass('badge pull-left');
+      votesCount.append('Votes:');
+      votesCount.append($('<span>').addClass('vote-count').html(group.votes));
+      $elem.prepend(votesCount);
+    }
 
     var addVote = $('<span>').addClass('badge vote-group pull-right').html('+1');
     $elem.prepend(addVote);
@@ -106,7 +109,7 @@ function hasEmptyText(elem) {
 }
 
 function initializeSticky() {
-  $('.new-sticky').find('textarea').attr('placeholder', 'Write something here and press enter :)').focus();
+  $('.new-sticky').find('textarea').attr('placeholder', 'Write something that was good and press enter :)').focus();
 }
 
 $( document ).ready(function() {
@@ -157,16 +160,19 @@ $( document ).ready(function() {
 
   $('.good-type').on('click', function(event){
     $('.new-sticky').attr('class', 'new-sticky').addClass(GOOD_STICKY).data('type', GOOD_STICKY);
+    $('.new-sticky').find('textarea').attr('placeholder', 'Write something that was good and press enter :)').focus();
     $('.sticky-text').focus();
   })
 
   $('.idea-type').on('click', function(event){
     $('.new-sticky').attr('class', 'new-sticky').addClass(IDEA_STICKY).data('type', IDEA_STICKY);
+    $('.new-sticky').find('textarea').attr('placeholder', 'Write some awesome idea :|').focus();
     $('.sticky-text').focus();
   })
 
   $('.bad-type').on('click', function(event){
     $('.new-sticky').attr('class', 'new-sticky').addClass(BAD_STICKY).data('type', BAD_STICKY);
+    $('.new-sticky').find('textarea').attr('placeholder', 'Write something that can be improved...').focus();
     $('.sticky-text').focus();
   })
 
