@@ -7,10 +7,17 @@ $(function() {
   });
 
   var clip = new ZeroClipboard($('#shareModal a.copy'));
+  var first_clip = new ZeroClipboard($('#currentTimeboxModal a.copy'));
 
   clip.on( "load", function(client) {
     client.on("mousedown", function(client) {
       client.setText($('#shareModal .share-link span').text());
     });
   } );
+
+    first_clip.on( "load", function(client) {
+        client.on("mousedown", function(client) {
+            client.setText($('#currentTimeboxModal .share-link span').text());
+        });
+    } );
 });

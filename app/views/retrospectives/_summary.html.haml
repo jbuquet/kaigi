@@ -1,14 +1,14 @@
 #summary.container
-  %h3
+  %h4{style: 'font-weight: 300;'}
     Manager:
-    %span{ style: "color: #{current_retro.manager.color}" }
+    %span{ style: "color: #{current_retro.manager.color};" }
       #{current_retro.manager.name}
 
     = link_to retrospective_summary_path(current_retro.public_key, format: :pdf), class: 'pull-right' do
       .fa.fa-download
 
   - unless current_retro.participants.blank?
-    %h3
+    %h4{style: 'font-weight: 300;'}
       Participants:
 
       - current_retro.participants.each do |participant|
@@ -21,4 +21,6 @@
 
   .row
     .col-md-12
+      %h4{style: 'font-weight: 300;'}
+        Groups discussed:
       = render 'groups/list.html'

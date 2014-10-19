@@ -1,23 +1,22 @@
+%h4{style: 'font-weight: 300; letter-spacing: 0;'}
+  Summary of each stage:
 - current_retro.statuses.each do |status|
   - if status_show_in_summary?(status)
-    .panel.panel-default.col-md-6
+    .panel.panel-default.col-md-4.col-md-offset-1
       .panel-heading
         %h3.panel-title= status_name(status)
 
       .panel-body
-        Start time: #{l(status.start_time)}
+        %strong
+          Start time:
+        #{l(status.start_time)}
         %br
-        Expected Duration:
+        %strong
+          Expected Duration:
         = status_estimated_duration(status)
 
         %br
-        Duration: #{seconds_to_string(status.duration)}
+        %strong
+          Duration:
+        #{seconds_to_string(status.duration)}
 
-.panel.panel-default.col-md-6
-  .panel-heading
-    %h3.panel-title Stickies discussed:
-  .panel-body
-    - current_retro.stickies.each do |sticky|
-      #{sticky.body} - #{sticky.user.name}
-
-      %br
