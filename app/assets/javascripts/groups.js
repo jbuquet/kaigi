@@ -83,6 +83,8 @@ function subscribeForRetroGroups() {
   });
 }
 
+var modalGroupNameCallBack;
+
 function groupSticky($droppable, $dropped) {
   var droppedIntoGroup = $droppable.data('group');
   var droppedIntoSticky = $droppable.data('sticky');
@@ -90,17 +92,25 @@ function groupSticky($droppable, $dropped) {
 
   if (droppedIntoGroup) {
     CLIENT.publish('/groups/add_sticky', { id: droppedIntoGroup.id, sticky_id: droppedSticky.id });
+
   } else if(!$droppable.hasClass('grouped')){
-    var group_name = prompt('Please enter a group name:', '');
 
-    if (!$.isEmptyObject(group_name)) {
+    $('#groupNameModal').modal('show');
 
-      var group = {
-        name: group_name,
-        retrospective_id: RETRO.id,
-        sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
-      };
-      CLIENT.publish('/groups/create', { group: group });
+    modalGroupNameCallBack = function() {
+      var group_name = $('input[name="group[name]"]').val();
+
+      if (!$.isEmptyObject(group_name)) {
+        var group = {
+          name: group_name,
+          retrospective_id: RETRO.id,
+          sticky_ids: [droppedIntoSticky.id, droppedSticky.id]
+        };
+
+        $('input[name="group[name]"]').val('');
+
+        CLIENT.publish('/groups/create', { group: group });
+      }
     }
   }
 }
@@ -109,6 +119,25 @@ $(function() {
   if (RETRO) {
     subscribeForRetroGroups();
   }
+
+  $('input[name="group[name]"]').focus();
+
+  $('#groupNameModal').modal({show: false});
+
+  $('#groupNameModal').on('shown.bs.modal', function () {
+    $('input[name="group[name]"]').focus();
+  });
+
+  $('#groupNameModal').on('hidden.bs.modal', function () {
+    modalGroupNameCallBack();
+  });
+
+  $('#group-name-form').on('submit', function (e) {
+    e.preventDefault();
+
+    modalGroupNameCallBack();
+    $('#groupNameModal').modal('hide');
+  });
 
   $('form#new_group').submit(function(e) {
     e.preventDefault();

@@ -29,5 +29,7 @@
       - if defining_action_items?
         = render 'action_items/list'
 
+  - if current_user_is_manager?
+    = render 'groups/set_group_name_modal'
 - else
   = render 'users/join_modal'

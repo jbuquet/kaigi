@@ -454,18 +454,18 @@ ul {
   background-color: transparent;
   border-color: transparent;
   &::-webkit-input-placeholder { /* WebKit browsers */
-    color: #686867;
+    color: #9d9d9c;
   }
   &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #686867;
+    color: #9d9d9c;
     opacity:  1;
   }
   &::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:  #686867;
+    color:  #9d9d9c;
     opacity:  1;
   }
   &:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:  #686867;
+    color:  #9d9d9c;
   }
   resize: none;
   &:focus {
@@ -595,4 +595,21 @@ textarea::-webkit-input-placeholder {  color: #333333;}
   height: 76%;
   margin-left: -6px;
   margin-top: 22px;
+}
+
+.group-name-label {
+  text-align: left;
+  margin-bottom: 20px;
+  display: block;
+  font-size: 16px;
+  color: black;
+}
+
+.group-name-buttons a {
+  background-color: #df4b61;
+  color: #ffffff !important;
+  border: none;
+  font-size: 16px;
+  padding: 8px;
+  cursor: pointer;
 }

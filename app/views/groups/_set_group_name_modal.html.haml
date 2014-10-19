@@ -1,0 +1,19 @@
+.modal.fade#groupNameModal{ 'role' => 'dialog', 'tab-index'=> '-1'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          Group name
+      .modal-body.clearfix
+        #group-name-box
+          %form#group-name-form{ 'accept-charset'=> 'UTF-8' }
+            .row.group-name-label
+              .col-md-2.col-md-offset-3
+                %span= 'Group name'
+              .col-md-4
+                %input{ name: 'group[name]', type: 'text' }
+
+            .row.group-name-buttons
+              .col-md-2
+                %span
+                  %a.radius2px{"data-dismiss" => "modal", :type => "button"} DONE
