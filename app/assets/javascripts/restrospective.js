@@ -46,7 +46,6 @@ function createSticky($elem, sticky){
   newSticky.addClass($elem.attr('class')).removeClass('new-sticky');
 
   $(newSticky).insertAfter($elem);
-  $elem.attr('class', 'new-sticky new');
   reloadStickies();
 }
 
@@ -96,9 +95,14 @@ function hasTypeSelected(elem){
   return elem.is('.good, .bad, .idea')
 }
 
+function initializeSticky() {
+  $('.new-sticky').find('textarea').val('Write something here and press enter :)').focus();
+}
+
 $( document ).ready(function() {
 
   reloadStickies();
+  initializeSticky();
 
   $('.container-stickies').droppable({
     accept: '.grouped',
