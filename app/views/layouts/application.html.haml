@@ -38,10 +38,9 @@
 
           = link_to '--:--:--', '#', id: 'timer'
 
+        .col-md-1#retro-next-stage-button
           - if !set_timebox_in_current_status && !finished? && current_user_is_manager?
-            %input#end_current_time.end-btn.radius2px{ type: :submit, value: next_stage_button_name }
-
-        .col-md-1#retro-time
+            %a#end_current_time.end-btn.radius2px{ href: '/' }= next_stage_button_name
           - if finished?
             %a.end-btn.radius2px{ href: '/' } Start over!
 

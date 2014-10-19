@@ -35,4 +35,6 @@ $(function() {
   if (USER) {
     subscribeForRetroUsers();
   }
+
+  $('input[name="user[name]"]').focus();
 });
