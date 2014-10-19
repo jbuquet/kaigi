@@ -1,0 +1,20 @@
+.modal.fade.expand-modal{ id: "group_#{group.id}", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4.modal-title= group.name
+      .modal-body
+        - group.stickies.each do |sticky|
+          %li.sticky.single{ 'data-sticky' => sticky.to_json, class: sticky.sticky_type }
+            %span.pull-left.user-initial{ style: "background-color: #{sticky.user.color};" }
+              = user_initial(sticky.user)
+
+            - if current_user_can_delete?(sticky)
+              %i.fa.fa-trash.remove-sticky.pull-right
+
+            %ul.sticky-container
+            %p= sticky.body
+      %br{ style: "clear:both" }
