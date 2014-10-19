@@ -5,6 +5,7 @@
       #{current_retro.manager.name}
 
     = link_to retrospective_summary_path(current_retro.public_key, format: :pdf), class: 'pull-right' do
+      = 'Take it with you!'
       .fa.fa-download
 
   - unless current_retro.participants.blank?
