@@ -440,6 +440,20 @@ ul {
 .sticky-text {
   background-color: transparent;
   border-color: transparent;
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: #686867;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #686867;
+    opacity:  1;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:  #686867;
+    opacity:  1;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:  #686867;
+  }
   resize: none;
   &:focus {
     outline: 0;
