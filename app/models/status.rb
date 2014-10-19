@@ -8,6 +8,7 @@ class Status < ActiveRecord::Base
   VOTE_GROUPS                   = 'vote_groups'
   SET_DISCUSS_STICKIES_TIMEBOX  = 'set_discuss_stickies_timebox'
   DISCUSS_STICKIES              = 'discuss_stickies'
+  ACTION_ITEMS                  = 'action_items'
   FINISH                        = 'finish'
 
   def self.set_current_status(status_data)
@@ -52,6 +53,11 @@ class Status < ActiveRecord::Base
                                     :retrospective_id => retrospective_id
                                   })
     elsif status.status_type == DISCUSS_STICKIES
+      new_status = Status.create!({ :status_type => ACTION_ITEMS,
+                                    :estimated_duration =>  status_data['estimated_duration'],
+                                    :retrospective_id => retrospective_id
+                                  })
+    elsif status.status_type == ACTION_ITEMS
       new_status = Status.create!({ :status_type => FINISH,
                                     :estimated_duration =>  status_data['estimated_duration'],
                                     :retrospective_id => retrospective_id

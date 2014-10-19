@@ -3,4 +3,5 @@
     .panel.panel-success.text-center.action-item{ data: { action_item: action_item.to_json } }
       .panel-body
         = action_item.action
-        %i.fa.fa-trash.remove-action-item.pull-right
+        - if current_user_is_manager? && defining_action_items?
+          %i.fa.fa-trash.remove-action-item.pull-right

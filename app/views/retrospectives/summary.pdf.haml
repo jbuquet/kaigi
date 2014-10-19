@@ -25,3 +25,11 @@
   .clearfix
 
   = render 'statuses/list.html'
+
+  .clearfix
+
+  %h4{style: 'font-weight: 300; letter-spacing: 0;'}
+    Action items summary:
+  .row
+    .col-md-9.col-md-offset-1
+      = render 'action_items/list.html'

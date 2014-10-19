@@ -13,17 +13,19 @@ module StatusesHelper
   def status_name(status)
     case status.try(:status_type)
     when Status::INVITE_USERS
-      'Invite users'
+      'Invite Users'
     when Status::WRITE_STICKIES
-      'Write stickies'
+      'Write Stickies'
     when Status::CREATE_GROUPS
-      'Create groups'
+      'Create Groups'
     when Status::VOTE_GROUPS
-      'Vote groups'
+      'Vote Groups'
     when Status::DISCUSS_STICKIES
-      'Discuss stickies'
+      'Discuss Stickies'
+    when Status::ACTION_ITEMS
+      'Define Action Items'
     when Status::FINISH
-      'Sum up'
+      'Sum Up'
     else
       ''
     end
