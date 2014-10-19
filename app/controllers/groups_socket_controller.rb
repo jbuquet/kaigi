@@ -55,4 +55,33 @@ class GroupsSocketController < FayeRails::Controller
     end
   end
 
+  channel '/groups/remove_sticky' do
+    monitor :publish do
+      sticky = Sticky.find_by_id(data['sticky_id'])
+      group = sticky.group
+
+      if sticky && group
+        sticky.update_attribute('group_id', nil)
+
+        GroupsSocketController.publish("/retrospectives/#{sticky.retrospective.id}/groups/sticky_removed",
+                                       { group: group, sticky: sticky })
+
+      end
+    end
+  end
+
+  channel '/groups/rename' do
+    monitor :publish do
+      group = Group.find_by_id(data['id'])
+
+      if group
+        group.update_attribute('name', data['name'])
+
+        GroupsSocketController.publish("/retrospectives/#{sticky.retrospective.id}/groups/renamed",
+                                       { group: group })
+
+      end
+    end
+  end
+
 end
