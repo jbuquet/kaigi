@@ -5,24 +5,25 @@
         %h4.modal-title
           = "Set timebox to next stage: #{next_status_name}"
 
-    .modal-body.clearfix
-      - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
-        .share-link
-          %span= retrospective_url(current_retro.public_key)
+      .modal-body.clearfix
+        - if current_retro.current_status.try(:status_type) == Status::INVITE_USERS
+          .share-link
+            %span= retrospective_url(current_retro.public_key)
 
-        = link_to 'Copy', '#', class: 'copy'
+          = link_to 'Copy', '#', class: 'copy'
 
-        %hr.time-box-separator
+          %hr.time-box-separator
 
-      %ul.time-box
-        %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
-          %li#set_timebox_section
-            .row
-              .col-md-2.col-md-offset-3
-                %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center ' }
-              .col-md-3
-                %span= 'minutes'
-          %li.current-timebox
-            %span
-              %input#start_current_time{ type: :submit, value: 'Start', class: 'end-btn radius2px' }
+        %ul.time-box
+          %form#new_statuses{ 'accept-charset'=> 'UTF-8' }
+            %li#set_timebox_section
+              .row
+                .col-md-2.col-md-offset-3
+                  %input{ name: 'status[minutes]', min: '01', max: '59',  value: default_timebox, type: 'number', class: 'time-input text-center ' }
+                .col-md-3
+                  %span= 'minutes'
+            %li.current-timebox
+              %span
+                %input#start_current_time{ type: :submit, value: 'Start', class: 'end-btn radius2px' }
+
 .modal-backdrop.fade.in
